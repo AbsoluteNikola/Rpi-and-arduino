@@ -37,7 +37,7 @@ class ArduinoConn:
             _hash = int.from_bytes(self.s.read(4), 'little')
             ack = (_hash == self.hash_msg())
 
-            print('msg:', self.data, _hash, self.hash_msg())
+            # print('msg:', self.data, _hash, self.hash_msg())
             if ack:
                 self.s.write(b'A')
             else:

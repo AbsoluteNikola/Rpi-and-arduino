@@ -1,5 +1,6 @@
 import sys
 import sqlite3
+import os
 from datetime import date
 from hardware import ArduinoConn, SENSORS_NUMBER
 
@@ -53,5 +54,7 @@ class DataServer:
 
 
 if __name__ == '__main__':
+    if 'data' not in os.listdir():
+        os.mkdir('date')
     print('start serving...')
     DataServer().serv()
