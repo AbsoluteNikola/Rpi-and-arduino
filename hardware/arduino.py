@@ -43,9 +43,9 @@ class ArduinoConn:
 
             print('msg:', self.data, _hash, self.hash_msg())
             if ack:
-                self.s.write('A')
+                self.s.write(b'A')
             else:
-                self.s.write('R')
+                self.s.write(b'R')
         return self.data.decode()
 
 
