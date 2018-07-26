@@ -55,7 +55,7 @@ if __name__ == '__main__':
     while True:
         results = {}
         for i in range(SENSORS_NUMBER):
-            msg = arduino.recv_msg(s)
+            msg = arduino.recv_msg()
             sensor, val = msg.split(':', maxsplit=1)
             results[sensor] = float(val)
         print(results)
