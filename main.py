@@ -10,4 +10,3 @@ class DataServer():
 
 if __name__ == '__main__':
     print('start serving...')
-    serve()

@@ -2,6 +2,8 @@ import serial
 import sys
 import json
 import time
+
+
 SENSORS_NUMBER = 3
 
 
@@ -33,6 +35,7 @@ class ArduinoConn:
             while self.byte != b'\x00':
                 self.data += self.byte
                 self.byte = self.s.read(1)
+                print(self.byte, end='')
             print(self.data)
 
             _hash = int.from_bytes(self.s.read(4), 'little')
