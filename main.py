@@ -33,8 +33,11 @@ class DataServer:
         name = 'data/{year}_{month}_{day}.db'.format(year=year, month=month, day=day)
         self.db = sqlite3.connect(name)
         self.db_cursor = self.db.cursor()
-        self.db_cursor.execute(SQL_CREATE_TABLE)
-        self.db.commit()
+        try:
+            self.db_cursor.execute(SQL_CREATE_TABLE)
+            self.db.commit()
+        except sqlite3.OperationalError:
+            pass
 
     def serv(self):
         self.arduino.s.write(b'A')
