@@ -22,7 +22,6 @@ class ArduinoConn:
         mod = 10**9 + 7
         _hash = self.data[0] * num
         for i in range(1, len(self.data)):
-            print(_hash)
             num = (num * 23) % mod
             _hash = (_hash + num * self.data[i]) % mod
         return _hash
