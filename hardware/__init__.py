@@ -1,3 +1,3 @@
-from arduino import ArduinoConn, SENSORS_NUMBER
+from .arduino import ArduinoConn, SENSORS_NUMBER
 
 __all__ = [ArduinoConn]
