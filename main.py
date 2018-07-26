@@ -47,7 +47,7 @@ class DataServer:
             if date.today().day != self.date.day:
                 self.create_db()
             print(results)
-            # Change it if db schema was changed
+
             self.db_cursor.execute(SQL_INSERT, results)
             self.db.commit()
 
