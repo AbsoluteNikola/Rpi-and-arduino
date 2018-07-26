@@ -29,7 +29,7 @@ class DataServer:
         year = date.today().year
         month = date.today().month
         day = date.today().day
-        name = '{year}_{month}_{day}.db'.format(year=year, month=month, day=day)
+        name = 'data/{year}_{month}_{day}.db'.format(year=year, month=month, day=day)
         self.db = sqlite3.connect(name)
         self.db_cursor = self.db.cursor()
         self.db_cursor.execute(SQL_CREATE_TABLE)
