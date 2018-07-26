@@ -55,6 +55,7 @@ if __name__ == '__main__':
         exit(1)
 
     arduino = ArduinoConn(sys.argv[1])
+    arduino.s.write(b'A')
     while True:
         results = {}
         for i in range(SENSORS_NUMBER):
