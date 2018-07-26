@@ -10,8 +10,9 @@ SQL_CREATE_TABLE = """
         pressure real
     )
 """
+
 SQL_INSERT = """
-    INSERT INTO sensors VALUES (?, ?, ?) 
+    INSERT INTO sensors VALUES (:temperature1, :temperature2, :pressure) 
 """
 
 
@@ -47,7 +48,7 @@ class DataServer:
                 self.create_db()
             print(results)
             # Change it if db schema was changed
-            self.db_cursor.execute(SQL_INSERT, (results['temperature1'], results['temperature2'], results['pressure']))
+            self.db_cursor.execute(SQL_INSERT, results)
             self.db.commit()
 
 
