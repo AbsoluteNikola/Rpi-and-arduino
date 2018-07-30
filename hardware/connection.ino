@@ -53,6 +53,5 @@ void loop()
   send_msg(pressure);
   send_msg(temperature);
   send_msg(celsius);
-  //!!!!!!!!!!!!!!!!!!!!!!!!!
-  delay(100);
+  delay(1000);
 }
