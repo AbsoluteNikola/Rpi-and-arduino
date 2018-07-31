@@ -70,4 +70,10 @@ function getInfo(){
 	  .done(addData)
 }
 
-setInterval(getInfo, 1000);
+
+function updateAll(){
+	getInfo()
+	camera = document.getElementById('camera');
+	camera.src = "state.jpg";
+}
+setInterval(updateAll, 1000);
