@@ -23,3 +23,7 @@ class CameraServer:
             print(time.time() - start)
             time.sleep(max(0.0, 1 - (time.time() - start)))
 
+
+if __name__ == '__main__':
+    camera = CameraServer()
+    camera.serve()
