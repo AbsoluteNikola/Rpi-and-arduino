@@ -22,6 +22,7 @@ class CameraServer:
             os.rename('tmp', 'state.jpg')
             print(time.time() - start)
             time.sleep(max(0.0, 1 - (time.time() - start)))
+            x = not x
 
 
 if __name__ == '__main__':
