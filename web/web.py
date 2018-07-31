@@ -12,8 +12,9 @@ def index():
 
 @app.route('/getInfo', methods=['GET', ])
 def get_info():
-    name = os.listdir('../data')[-1]
-    cur = sqlite3.connect('../data/{}'.format(name)).cursor()
+    name = os.listdir('../data/db')[-1]
+    print(name)
+    cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
     # cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
     cur.execute("""SELECT * FROM sensors;""")
     t1, t2, p = choice(cur.fetchall())
