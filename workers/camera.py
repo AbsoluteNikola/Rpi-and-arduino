@@ -20,5 +20,6 @@ class CameraServer:
             else:
                 os.symlink('2.jpg', 'tmp')
             os.rename('tmp', 'state.jpg')
-            time.sleep(start - time.time())
+            print(time.time() - start)
+            time.sleep(max(0.0, 1 - (time.time() - start)))
 
