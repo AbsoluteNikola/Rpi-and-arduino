@@ -1,0 +1,12 @@
+[Unit]
+Description=uWSGI instance to serve Rpi-and-arduino project, created by Nikolay Rulev
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/pi/Rpi-and-arduino/web
+ExecStart=/usr/local/bin/uwsgi --ini uwsgi_config.ini
+
+[Install]
+WantedBy=multi-user.target
