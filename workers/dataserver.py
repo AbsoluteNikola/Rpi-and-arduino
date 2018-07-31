@@ -1,8 +1,8 @@
 import sys
-import sqlite3
 import os
+import sqlite3
 from datetime import date
-from hardware import ArduinoConn, SENSORS_NUMBER
+from arduino import ArduinoConn, SENSORS_NUMBER
 
 SQL_CREATE_TABLE = """
     CREATE TABLE sensors (
@@ -39,7 +39,7 @@ class DataServer:
         except sqlite3.OperationalError:
             pass
 
-    def serv(self):
+    def serve(self):
         self.arduino.s.write(b'A')
         while True:
             results = {}
@@ -57,7 +57,5 @@ class DataServer:
 
 
 if __name__ == '__main__':
-    if 'data' not in os.listdir():
-        os.mkdir('date')
     print('start serving...')
-    DataServer().serv()
+    DataServer().serve()
