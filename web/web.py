@@ -11,7 +11,7 @@ def index():
     return app.send_static_file('index.html')
 
 
-@app.route('/checkLogin', methods=('POST',))
+@app.route('/checkLogin')
 def check_login():
     print(request.form.get('password'))
     if request.form.get('password') == PASSWORD:
