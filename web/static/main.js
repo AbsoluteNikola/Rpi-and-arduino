@@ -70,10 +70,22 @@ function getInfo(){
 	  .done(addData)
 }
 
+function checkLogin(){
+	console.log({password: $('#password')[0].value});
+	$.post({
+		url: 'checkLogin',
+		data: {password: $('#password')[0].value},
+		success: function(result){
+			if(result == 'True')
+				window.location.replace("getAdmin");
+		}
+	})
+}
+
 
 function updateAll(){
 	getInfo()
 	camera = document.getElementById('camera');
 	camera.src = "state.jpg";
 }
-setInterval(updateAll, 1000);
+timer = setInterval(updateAll, 1000);

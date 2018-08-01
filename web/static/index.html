@@ -23,9 +23,9 @@
             <li><a href="about.html"><button type="button" class="btn btn-info my-2 my-sm-0" >
               About Us</button></a></li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input type="password" class="form-control mr-sm-2 float-left" id="exampleInputPassword1" placeholder="Password">
-            <a href="admin.html"><button class="btn btn-primary my-2 my-sm-0" type="submit">Log In</button></a>
+          <form action="javascript:void(null);" onsubmit="checkLogin()" class="form-inline my-2 my-lg-0" method="POST">
+            <input type="password" class="form-control mr-sm-2 float-left" name="password" id="password" placeholder="Password">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Log In</button>
           </form>
         </div>
     </nav>
