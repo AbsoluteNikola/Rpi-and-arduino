@@ -14,7 +14,7 @@ class CameraServer:
         x = False
         while True:
             start = time.time()
-            self.camera.capture('1.jpg' if x else '2.jpg')
+            self.camera.capture('1.jpg' if x else '2.jpg', resize(600, 400))
             if x:
                 os.symlink('1.jpg', 'tmp')
             else:
