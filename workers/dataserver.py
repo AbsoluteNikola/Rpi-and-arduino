@@ -34,7 +34,7 @@ class DataServer:
         year = date.today().year
         month = date.today().month
         day = date.today().day
-        name = 'data/db/{year}_{month}_{day}.db'.format(year=year, month=month, day=day)
+        name = '../data/db/{year}_{month}_{day}.db'.format(year=year, month=month, day=day)
         self.db = sqlite3.connect(name)
         self.db_cursor = self.db.cursor()
         try:
