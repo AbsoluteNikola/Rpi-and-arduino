@@ -6,9 +6,13 @@ from arduino import ArduinoConn, SENSORS_NUMBER
 
 SQL_CREATE_TABLE = """
     CREATE TABLE sensors (
-        temperature1 real,
-        temperature2 real,
-        pressure real
+        temperature_1 real,
+        temperature_2 real,
+        temperature_3 real,
+        humidity real,
+        pressure real,
+        CO2 real,
+        CO real,
     )
 """
 
@@ -50,6 +54,7 @@ class DataServer:
 
             if date.today().day != self.date.day:
                 self.create_db()
+                self.date = date.today()
             print(results)
 
             self.db_cursor.execute(SQL_INSERT, results)
