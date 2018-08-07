@@ -1,7 +1,7 @@
 import sqlite3
 import os
 from flask import Flask, jsonify, request, make_response, abort
-from random import choice
+from random import choice, sample
 from secrets import PASSWORD, COOKIE
 app = Flask(__name__)
 
@@ -37,10 +37,20 @@ def get_info():
     cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
     # cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
     cur.execute("""SELECT * FROM sensors;""")
-    t1, t2, p = choice(cur.fetchall())
+    # temperature_1 real,
+    # temperature_2 real,
+    # temperature_3 real,
+    #
+    # humidity real,
+    # pressure real,
+    # CO2 real,
+    # CO real?
+    t1, t2, t3, h, p, c, _ = choice(cur.fetchall())
     cur.close()
     print(t1, t2, p)
     return jsonify({
-        'temperature': [t1, t2, ],
-        'pressure': p
+        'temperature': [t1, t2, t3],
+        'pressure': p,
+        'humidity': h,
+        'CO2': c
     })

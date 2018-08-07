@@ -13,11 +13,11 @@ SQL_CREATE_TABLE = """
         pressure real,
         CO2 real,
         CO real
-    )
+    );
 """
 
 SQL_INSERT = """
-    INSERT INTO sensors VALUES (:temperature_1, :temperature_2, :temperature_3, :humidity, :pressure, :CO2, :CO) 
+    INSERT INTO sensors VALUES (:temperature_1, :temperature_2, :temperature_3, :humidity, :pressure, :CO2, :CO);
 """
 
 
