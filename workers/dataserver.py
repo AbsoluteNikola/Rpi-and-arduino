@@ -12,7 +12,7 @@ SQL_CREATE_TABLE = """
         humidity real,
         pressure real,
         CO2 real,
-        CO real,
+        CO real
     )
 """
 
