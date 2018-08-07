@@ -17,7 +17,7 @@ SQL_CREATE_TABLE = """
 """
 
 SQL_INSERT = """
-    INSERT INTO sensors VALUES (:temperature1, :temperature2, :pressure) 
+    INSERT INTO sensors VALUES (:temperature_1, :temperature_2, :temperature_3, :humidity, :pressure, :CO2, :CO) 
 """
 
 
