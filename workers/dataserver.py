@@ -49,6 +49,7 @@ class DataServer:
             results = {}
             for i in range(SENSORS_NUMBER):
                 msg = self.arduino.recv_msg()
+                print(msg)
                 sensor, val = msg.split(':', maxsplit=1)
                 results[sensor] = float(val)
 
