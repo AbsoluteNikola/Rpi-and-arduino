@@ -6,7 +6,7 @@ After=network.target
 User=www-data
 Group=www-data
 WorkingDirectory=/home/pi/Rpi-and-arduino/web
-ExecStart=/usr/local/bin/uwsgi --ini uwsgi_config.ini
+ExecStart=/usr/local/bin/uwsgi --ini configs/uwsgi_config.ini
 
 [Install]
 WantedBy=multi-user.target
