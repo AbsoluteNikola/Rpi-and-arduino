@@ -47,7 +47,8 @@ class DataServer:
         self.arduino.s.write(b'A')
         while True:
             results = {}
-            for i in range(SENSORS_NUMBER):
+
+            while len(results) < SENSORS_NUMBER:
                 msg = self.arduino.recv_msg()
                 print(msg)
                 sensor, val = msg.split(':', maxsplit=1)

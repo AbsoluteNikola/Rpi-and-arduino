@@ -37,8 +37,8 @@ def get_info():
     name = os.listdir('../data/db')[-1]
     print(name)
     cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
-    # cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
-    cur.execute("""SELECT * FROM sensors;""")
+    cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
+    # cur.execute("""SELECT * FROM sensors;""")
     # temperature_1 real,
     # temperature_2 real,
     # temperature_3 real,
@@ -47,7 +47,7 @@ def get_info():
     # pressure real,
     # CO2 real,
     # CO real?
-    t1, t2, t3, h, p, c, _ = choice(cur.fetchall())
+    t1, t2, t3, h, p, c, _ = cur.fetchone()
     cur.close()
     print(t1, t2, p)
     return jsonify({

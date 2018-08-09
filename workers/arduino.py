@@ -28,6 +28,7 @@ class ArduinoConn:
 
     def recv_msg(self) -> str:
         ack = False
+        # data\00hash -> A ? R
         while not ack:
             self.byte = b''
             self.data = b''
