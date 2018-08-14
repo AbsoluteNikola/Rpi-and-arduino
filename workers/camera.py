@@ -14,11 +14,11 @@ class CameraServer:
         x = False
         while True:
             start = time.time()
-            self.camera.capture('1.jpg' if x else '2.jpg', resize=(600, 400))
+            self.camera.capture('1.jpg' if x else 'state.jpg', resize=(600, 400))
             if x:
                 os.symlink('1.jpg', 'tmp')
             else:
-                os.symlink('2.jpg', 'tmp')
+                os.symlink('state.jpg', 'tmp')
             os.rename('tmp', 'state.jpg')
             print(time.time() - start)
             time.sleep(max(0.0, 1 - (time.time() - start)))

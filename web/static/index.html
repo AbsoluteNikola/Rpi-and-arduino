@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="static/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/bootstrap.min.css">
     <!--<link rel="stylesheet" type="text/css" href="style.css"> -->
     <title>Samp0_team</title>
 
@@ -79,11 +79,10 @@ input:checked + .slider:before {
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
+        <img src="pictures/fire.png">
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li><a href="about.html"><button type="button" class="btn btn-info my-2 my-sm-0" >
-              About Us</button></a></li>
+            <li></li>
           </ul>
           <form action="javascript:void(null);" onsubmit="checkLogin()" class="form-inline my-2 my-lg-0" method="POST">
             <input type="password" class="form-control mr-sm-2 float-left" name="password" id="password" placeholder="Password">
@@ -100,88 +99,80 @@ input:checked + .slider:before {
         </div>
         <div class="col-sm-12 col-lg-6 sensor-text">
           <table class="table">
-      <thead>
-        <tr>
-         <th scope="col">#</th>
-          <th scope="col">Switcher</th>
-          <th scope="col">Sys</th>
-          <th scope="col">Sensor</th>
-          <th scope="col">Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td><label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-        </label></td>
-          <td>CO2</td>
-          <td>mq135</td>
-          <td>0000</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td><label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-        </label></td>
-          <td>CO2</td>
-          <td>mq135</td>
-          <td>0000</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td><label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-        </label></td>
-          <td>CO2</td>
-          <td>mq135</td>
-          <td>0000</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td><label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-        </label></td>
-          <td>CO2</td>
-          <td>mq135</td>
-          <td>0000</td>
-        </tr>
-        <tr>
-          <th scope="row">5</th>
-          <td><label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-        </label></td>
-          <td>CO2</td>
-          <td>mq135</td>
-          <td>0000</td>
-        </tr>
-        <tr>
-          <th scope="row">6</th>
-          <td><label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-        </label></td>
-          <td>CO2</td>
-          <td>mq135</td>
-          <td>0000</td>
-        </tr>
-      </tbody>
-  </table>
-        
+		      <thead>
+		        <tr>
+		          <th scope="col">Sw</th>
+		          <th scope="col">System</th>
+		          <th scope="col">Value</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><label class="switch">
+		        <input type="checkbox">
+		        <span class="slider round"></span>
+		        </label></td>
+		          <td>CO2 +</td>
+		          <td>CO2 value</td>
+		        </tr>
+		        <tr>
+		          <td><label class="switch">
+		        <input type="checkbox">
+		        <span class="slider round"></span>
+		        </label></td>
+		          <td>CO2 -> O2</td>
+		          <td>CO2 Value</td>
+		        </tr>
+		        <tr>
+		          <td><label class="switch">
+		        <input type="checkbox">
+		        <span class="slider round"></span>
+		        </label></td>
+		          <td>Ligth</td>
+		          <td>Photorezistor</td>
+		        </tr>
+		        <tr>
+		          <td><label class="switch">
+		        <input type="checkbox">
+		        <span class="slider round"></span>
+		        </label></td>
+		          <td>Heater</td>
+		          <td>Temperature</td>
+		        </tr>
+		    </tbody>
+		 </table>
+         <!--<div class="conteiner-fluid">
+         	<div class="row no-gutters">
+	         	<div col-sm-4 col-lg-2><div>Pressure:<span>Value</span></div></div>
+	         	<div col-sm-4 col-lg-2><div>Temperature_1:<span>value</span></div></div>
+	         	<div col-sm-4 col-lg-2><div>Temperature_2:<span>Value</span></div></div>
+	         	<div col-sm-4 col-lg-2><div>Humidity:<span>Value</span></div></div>
+	         	<div col-sm-4 col-lg-2><div>CO2:<span>Value</span></div></div>
+	         	<div col-sm-4 col-lg-2><div>CO: <span>Value</span></div></div>
+         	</div>
+         </div>-->
         </div>
       </div>
+      <table class="table">
+         	<thead>
+		        <tr>
+		          <th scope="col">Pressure:<span>Value</span></th>
+		          <th scope="col">Temperature_1:<span>value</span></th>
+		          <th scope="col">Temperature_2:<span>Value</span></th>
+		          <th scope="col">Pressure:<span>Value</span></th>
+		          <th scope="col">Temperature_1:<span>value</span></th>
+		          <th scope="col">Temperature_2:<span>Value</span></th>
+		        </tr>
+		      </thead>
+         </table>
+  </div>
       <!--CHARTS-->
       <div class="row no-gutters">
         <div class="col">
           <div class="chart-container">
             <canvas id="temperatureChart"></canvas>
           </div>
-          
+
           <div class="chart-container">
             <canvas id="humidityChart"></canvas>
           </div>
@@ -197,10 +188,10 @@ input:checked + .slider:before {
         </div>
       </div>
     </div>
-    <script src="static/libs/jquery-3.3.1.min.js"></script>
-    <script src="static/libs/popper.min.js"></script>
-    <script src="static/libs/bootstrap.min.js"></script>
-    <script src="static/libs/Chart.bundle.min.js"></script>
-    <script src="static/index.js"></script>
+    <script src="libs/jquery-3.3.1.min.js"></script>
+    <script src="libs/popper.min.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/Chart.bundle.min.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
