@@ -18,7 +18,7 @@ class Sync:
     def __enter__(self):
         while os.path.exists('sync'):
             sleep(0.01)
-        open('sync', 'w').write('w')
+        open('sync.txt', 'w').write('w')
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         os.remove('sync')
