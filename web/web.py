@@ -24,11 +24,6 @@ class Sync:
         os.remove('sync.txt')
 
 
-with Sync() as sync:
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup([pin for _, pin in pins.items()], GPIO.OUT, initial=GPIO.LOW)
-
-
 @app.route('/', methods=('GET',))
 def index():
     return app.send_static_file('index.html')
