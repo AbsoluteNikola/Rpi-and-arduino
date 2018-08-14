@@ -176,6 +176,7 @@ function checkLogin(){
 }
 
 function startDevice(device){
+	console.log(`${device}`);
 	$.post({
 		url: '/startDevice',
 		data: {sensor: device},
