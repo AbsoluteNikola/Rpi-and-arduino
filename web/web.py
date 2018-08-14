@@ -24,7 +24,7 @@ class Sync:
         os.remove('sync')
 
 
-with Sync:
+with Sync() as sync:
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup([pin for _, pin in pins.items()], GPIO.OUT, initial=GPIO.LOW)
 
@@ -55,7 +55,7 @@ def get_admin():
 def start_device():
     if request.cookies.get('password') != COOKIE:
         return "you are not authorized"
-    with Sync:
+    with Sync() as sync:
         sensor = pins[request.form.get('sensor')]
         GPIO.outpur(sensor, GPIO.input(sensor) ^ 1)
     return str(GPIO.input(sensor) == GPIO.HIGH)
