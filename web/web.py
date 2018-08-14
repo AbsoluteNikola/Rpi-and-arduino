@@ -53,6 +53,7 @@ def start_device():
     with Sync() as sync:
         GPIO.setmode(GPIO.BOARD)
         sensor = pins[request.form.get('sensor')]
+        GPIO.setup(sensor, GPIO.OUT)
         GPIO.output(sensor, GPIO.input(sensor) ^ 1)
     return str(GPIO.input(sensor) == GPIO.HIGH)
 
