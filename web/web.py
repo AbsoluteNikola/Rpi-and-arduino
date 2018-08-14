@@ -51,6 +51,7 @@ def start_device():
     if request.cookies.get('password') != COOKIE:
         return "you are not authorized"
     with Sync() as sync:
+        GPIO.setmode(GPIO.BOARD)
         sensor = pins[request.form.get('sensor')]
         GPIO.output(sensor, GPIO.input(sensor) ^ 1)
     return str(GPIO.input(sensor) == GPIO.HIGH)
