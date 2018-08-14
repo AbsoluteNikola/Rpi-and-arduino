@@ -57,7 +57,7 @@ def start_device():
         return "you are not authorized"
     with Sync() as sync:
         sensor = pins[request.form.get('sensor')]
-        GPIO.outpur(sensor, GPIO.input(sensor) ^ 1)
+        GPIO.output(sensor, GPIO.input(sensor) ^ 1)
     return str(GPIO.input(sensor) == GPIO.HIGH)
 
 
