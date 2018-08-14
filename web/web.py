@@ -9,8 +9,8 @@ from secrets import PASSWORD, COOKIE
 app = Flask(__name__)
 
 pins = {
-    'AIR': 5,
-    'LIGHT': 3
+    'CO2minus': 5,
+    'Light': 3
 }
 
 
