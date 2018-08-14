@@ -70,13 +70,14 @@ def get_info():
     # cur.execute("""SELECT * FROM sensors;""")
     # temperature_1 real,
     # temperature_2 real,
-    # temperature_3 real,
     #
     # humidity real,
     # pressure real,
     # CO2 real,
     # CO real?
-    t1, t2, h, p, c, _ = cur.fetchone()
+    res = cur.fetchone()
+    print(res)
+    t1, t2, h, p, c, _ = res
     cur.close()
     print(t1, t2, p)
     return jsonify({
