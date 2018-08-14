@@ -178,7 +178,7 @@ function checkLogin(){
 function startDevice(device){
 	$.post({
 		url: '/startDevice',
-		data: {device: device},
+		data: {sensor: device},
 		success: function(result){
 			//getElementById(device).checked = result
 		}
