@@ -3,14 +3,15 @@ import os
 from time import sleep
 from flask import Flask, jsonify, request, make_response, abort
 from RPi import GPIO
-from set_up_pi import set_up
 from random import choice, sample
 from secrets import PASSWORD, COOKIE
 
 app = Flask(__name__)
 
-LIGHT = 5
-AIR = 3
+pins = {
+    'AIR': 5,
+    'LIGHT': 3
+}
 
 
 class Sync:
@@ -24,7 +25,8 @@ class Sync:
 
 
 with Sync:
-    set_up()
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup([pin for _, pin in pins.items()], GPIO.OUT, initial=GPIO.LOW)
 
 
 @app.route('/', methods=('GET',))
@@ -54,7 +56,9 @@ def start_device():
     if request.cookies.get('password') != COOKIE:
         return "you are not authorized"
     with Sync:
-        GPIO.setmode(GPIO.BOARD)
+        sensor = pins[request.form.get('sensor')]
+        GPIO.outpur(sensor, GPIO.input(sensor) ^ 1)
+    return str(GPIO.input(sensor) == GPIO.HIGH)
 
 
 @app.route('/getInfo', methods=('GET',))
