@@ -180,7 +180,9 @@ function startDevice(device){
 		url: '/startDevice',
 		data: {sensor: device},
 		success: function(result){
-			//getElementById(device).checked = result
+			d = getElementById(device);
+			d.checked = result;
+			console.log(`${device}:${d.checked}`);
 		}
 	})
 }
