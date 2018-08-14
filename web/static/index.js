@@ -18,12 +18,6 @@ window.temperatureChart = new function buildTemperature(){
 				data: [],
 				borderColor: 'rgb(255, 169, 0)',
 				fill: false
-			},
-			{
-				label: "№3",
-				data: [],
-				borderColor: 'rgb(0, 162, 0)',
-				fill: false
 			}
 			]
 		},
@@ -117,6 +111,11 @@ window.pressureChart = new function buildPressure(){
 
 
 function addData(data){
+	document.getElementById('pressureVal').innerText = `Pressure:${data.pressure}`
+	document.getElementById('temperature1Val').innerText = `Pressure:${data.temperature[0]}`
+	document.getElementById('temperature2Val').innerText = `Pressure:${data.temperature[1]}`
+	document.getElementById('humidityVal').innerText = `Pressure:${data.humidity}`
+	document.getElementById('CO2Val').innerText = `Pressure:${data.CO2}`
 	for(var sensor in data){
 		var chart = window[sensor + 'Chart'];
 		
@@ -158,7 +157,7 @@ function addData(data){
 }
 
 function getInfo(){
-	$.ajax({
+ 	$.ajax({
 	    url:'getInfo'
 	})
 	  .done(addData)
@@ -172,6 +171,16 @@ function checkLogin(){
 		success: function(result){
 			if(result == 'True')
 				window.location.href = "/getAdmin";
+		}
+	})
+}
+
+function startDevice(device){
+	$.post({
+		url: '/startDevice',
+		data: {device: device},
+		success: function(result){
+			//getElementById(device).checked = result
 		}
 	})
 }
