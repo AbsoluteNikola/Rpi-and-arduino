@@ -2,7 +2,7 @@ import sqlite3
 import os
 from time import sleep
 from flask import Flask, jsonify, request, make_response, abort
-# from RPi import GPIO
+from RPi import GPIO
 from random import choice, sample
 from secrets import PASSWORD, COOKIE
 
