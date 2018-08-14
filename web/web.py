@@ -55,7 +55,7 @@ def start_device():
         sensor = pins[request.form.get('sensor')]
         GPIO.setup(sensor, GPIO.OUT)
         GPIO.output(sensor, GPIO.input(sensor) ^ 1)
-    return str(GPIO.input(sensor) == GPIO.HIGH)
+    return jsonify(GPIO.input(sensor) == GPIO.HIGH)
 
 
 @app.route('/getInfo', methods=('GET',))
