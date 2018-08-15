@@ -2,13 +2,14 @@ import sqlite3
 import os
 from time import sleep
 from flask import Flask, jsonify, request, make_response, abort
-from RPi import GPIO
+# from RPi import GPIO
 from random import choice, sample
 from secrets import PASSWORD, COOKIE
 
 app = Flask(__name__)
 
 pins = {
+    'CO2plus': 7,
     'CO2minus': 3,
     'Light': 5
 }
@@ -49,10 +50,19 @@ def get_admin():
 @app.route('/startDevice', methods=('POST', ))
 def start_device():
     if request.cookies.get('password') != COOKIE:
-        return "you are not authorized"
+        return jsonify('Error')
     with Sync() as sync:
         GPIO.setmode(GPIO.BOARD)
-        sensor = pins[request.form.get('sensor')]
+        sensor = pins.get(request.form.get('sensor'))
+        if sensor == 'CO2plus ':
+            p = GPIO.PWM(7, 50)
+            p.start(0)
+            for dc in range(100, -1, -5):
+                p.ChangeDutyCycle(dc)
+                sleep(0.1)
+            return jsonify(True)
+        if not sensor:
+            return jsonify('Error')
         GPIO.setup(sensor, GPIO.OUT)
         GPIO.output(sensor, GPIO.input(sensor) ^ 1)
     return jsonify(GPIO.input(sensor) == GPIO.HIGH)
@@ -74,12 +84,13 @@ def get_info():
     # CO real?
     res = cur.fetchone()
     print(res)
-    t1, t2, h, p, c, _ = res[0:]
+    t1, t2, h, p, c2, c = res[0:]
     cur.close()
     print(t1, t2, p)
     return jsonify({
         'temperature': [t1, t2],
         'pressure': p,
         'humidity': h,
-        'CO2': c
+        'CO2': c2,
+        'fire': False if c < 50 else True
     })

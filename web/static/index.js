@@ -116,6 +116,15 @@ function addData(data){
 	document.getElementById('temperature2Val').innerText = `Pressure:${data.temperature[1]}`
 	document.getElementById('humidityVal').innerText = `Pressure:${data.humidity}`
 	document.getElementById('CO2Val').innerText = `Pressure:${data.CO2}`
+	fire_el = document.getElementById('fire');
+	if(data.fire == true && fire_el.getAttribute('active') == 'false'){
+		fire_el.src = '/static/pictures/fire_active.png';
+		fire_el.setAttribute('active', 'true');
+	}
+	if(data.fire == false && fire_el.getAttribute('active') == 'true'){
+		fire_el.src = '/static/pictures/fire.png';
+		fire_el.setAttribute('active', 'false');
+	}
 	for(var sensor in data){
 		if(sensor == 'fire')
 			continue;
@@ -183,6 +192,8 @@ function startDevice(device){
 		url: '/startDevice',
 		data: {sensor: device},
 		success: function(result){
+			if(result == 'Error')
+				return
 			d = document.getElementById(device);
 			d.checked = result;
 			console.log(`${device}:${d.checked}`);
