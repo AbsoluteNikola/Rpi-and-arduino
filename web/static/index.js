@@ -117,10 +117,12 @@ function addData(data){
 	document.getElementById('humidityVal').innerText = `Pressure:${data.humidity}`
 	document.getElementById('CO2Val').innerText = `Pressure:${data.CO2}`
 	for(var sensor in data){
+		if(sensor == 'fire')
+			continue;
 		var chart = window[sensor + 'Chart'];
 		
 		if(!(data[sensor] instanceof Array))
-			data[sensor] = [data[sensor]]
+			data[sensor] = [data[sensor]];
 		var d = new Date();
 		
 		chart.data.labels.push(`${d.getMinutes()}:${d.getSeconds()}`);
@@ -137,11 +139,11 @@ function addData(data){
 			if(data[sensor][i] == -1.0 && chart.data.datasets[i].label != 'Error') {
 				chart.data.datasets[i].oldLabel = chart.data.datasets[i].label;
 				chart.data.datasets[i].oldColor = chart.data.datasets[i].borderColor; 
-				console.log(chart.data.datasets[i].oldLabel, chart.data.datasets[i].oldColor)
+				console.log(chart.data.datasets[i].oldLabel, chart.data.datasets[i].oldColor);
 				//chart.data.datasets[i].oldBackgroundColor = chart.data.datasets[i].backgroundColor; 
 				chart.data.datasets[i].borderColor = 'rgb(255, 0, 0)';
 				//chart.data.datasets[i].backgroundColor = 'rgba(255, 0, 0, 1)'
-				chart.data.datasets[i].label = 'Error'
+				chart.data.datasets[i].label = 'Error';
 				continue;
 			} else if(chart.data.datasets[i].label =='Error' && data[sensor][i] != -1.0) {
 				chart.data.datasets[i].label = chart.data.datasets[i].oldLabel;
