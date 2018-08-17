@@ -55,7 +55,9 @@ def start_device():
     with Sync() as sync:
         GPIO.setmode(GPIO.BOARD)
         sensor = pins.get(request.form.get('sensor'))
+        GPIO.setup(sensor, GPIO.OUT)
         if sensor == 'CO2plus ':
+
             p = GPIO.PWM(7, 50)
             p.start(0)
             for dc in range(100, -1, -5):
@@ -64,7 +66,6 @@ def start_device():
             return jsonify(True)
         if not sensor:
             return jsonify('Error')
-        GPIO.setup(sensor, GPIO.OUT)
         GPIO.output(sensor, GPIO.input(sensor) ^ 1)
     return jsonify(GPIO.input(sensor) == GPIO.HIGH)
 
@@ -75,7 +76,7 @@ def get_info():
     print(name)
     cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
     # cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
-    cur.execute("""SELECT temperature_1, temperature_2, humidity, pressure, CO2, CO FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors);""")
+    cur.execute("""SELECT temperature_1, tempimerature_2, humidity, pressure, CO2, CO FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors);""")
     # temperature_1 real,
     # temperature_2 real,
     #
