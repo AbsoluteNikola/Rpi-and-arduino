@@ -94,5 +94,5 @@ def get_info():
         'pressure': p,
         'humidity': h,
         'CO2': c2,
-        'fire': False if c < 50 else True
+        'fire': False if c < 10 else True
     })
