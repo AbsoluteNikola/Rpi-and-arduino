@@ -11,7 +11,8 @@ app = Flask(__name__)
 pins = {
     'CO2plus': 7,
     'CO2minus': 3,
-    'Light': 5
+    'Light': 5,
+    'Heater': 8
 }
 
 
