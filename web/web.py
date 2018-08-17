@@ -57,12 +57,13 @@ def start_device():
         sensor = pins.get(request.form.get('sensor'))
         GPIO.setup(sensor, GPIO.OUT)
         if sensor == 'CO2plus':
-
+            print('serva')
             p = GPIO.PWM(7, 50)
             p.start(0)
             for dc in range(100, -1, -5):
                 p.ChangeDutyCycle(dc)
                 sleep(0.1)
+            p.stop()
             return jsonify(True)
         if not sensor:
             return jsonify('Error')
