@@ -1,5 +1,5 @@
 [Unit]
-Description=uWSGI instance to serve Rpi-and-arduino project, created by Nikolay Rulev
+Description=uWSGI runner to serve Rpi-and-arduino project, created by Nikolay Rulev
 After=network.target
 
 [Service]

@@ -1,5 +1,6 @@
 import sys
 import os
+from time import sleep
 import sqlite3
 from datetime import date
 from arduino import ArduinoConn, SENSORS_NUMBER
@@ -23,7 +24,11 @@ SQL_INSERT = """
 class DataServer:
 
     def __init__(self):
-        self.arduino = ArduinoConn(sys.argv[1])
+        print('waiting arduino...')
+        while 'ttyACM0' not in os.listdir('/dev'):
+            sleep(0.1)
+        print('arduino with us')
+        self.arduino = ArduinoConn('/dev/ttyACM0')
         self.db = None
         self.db_cursor = None
         self.date = date.today()
@@ -60,7 +65,7 @@ class DataServer:
 
             self.db_cursor.execute(SQL_INSERT, results)
             self.db.commit()
-
+            print('insert ', results)
 
 if __name__ == '__main__':
     print('start serving...')
