@@ -28,6 +28,7 @@ class DataServer:
         while 'ttyACM0' not in os.listdir('/dev'):
             sleep(0.1)
         print('arduino with us')
+        sleep(50)
         self.arduino = ArduinoConn('/dev/ttyACM0')
         self.db = None
         self.db_cursor = None
