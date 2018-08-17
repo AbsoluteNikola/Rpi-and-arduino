@@ -56,7 +56,7 @@ def start_device():
         GPIO.setmode(GPIO.BOARD)
         sensor = pins.get(request.form.get('sensor'))
         GPIO.setup(sensor, GPIO.OUT)
-        if sensor == 'CO2plus':
+        if request.form.get('sensor') == 'CO2plus':
             print('serva')
             p = GPIO.PWM(7, 50)
             p.start(0)
