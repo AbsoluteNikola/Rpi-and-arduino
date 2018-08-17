@@ -76,7 +76,7 @@ def get_info():
     print(name)
     cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
     # cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
-    cur.execute("""SELECT temperature_1, tempimerature_2, humidity, pressure, CO2, CO FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors);""")
+    cur.execute("""SELECT temperature_1, temperature_2, humidity, pressure, CO2, CO FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors);""")
     # temperature_1 real,
     # temperature_2 real,
     #
