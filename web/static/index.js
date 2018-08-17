@@ -25,6 +25,13 @@ window.temperatureChart = new function buildTemperature(){
 			title: {
 				display: true,
 				text: 'Temperature'
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
 			}
 		}
 	});
