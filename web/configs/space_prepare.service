@@ -1,0 +1,12 @@
+[Unit]
+Description=preapare raspberry pins, created by Nikolay Rulev
+After=network.target
+
+[Service]
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/Rpi-and-arduino/web
+ExecStart=/usr/bin/python3 prepare.py
+
+[Install]
+WantedBy=multi-user.target

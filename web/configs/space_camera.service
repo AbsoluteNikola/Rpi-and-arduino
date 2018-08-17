@@ -1,0 +1,12 @@
+[Unit]
+Description=run cameraserver to capture situation in station, created by Nikolay Rulev
+After=network.target
+
+[Service]
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/Rpi-and-arduino/workers
+ExecStart=/usr/bin/python3 camera.py
+
+[Install]
+WantedBy=multi-user.target
