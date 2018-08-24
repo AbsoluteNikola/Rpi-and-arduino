@@ -3,7 +3,7 @@ import os
 from time import sleep
 from flask import Flask, jsonify, request, make_response, abort
 from RPi import GPIO
-from random import choice, sample
+# from random import choice, sample
 from secrets import PASSWORD, COOKIE
 
 app = Flask(__name__)
@@ -76,18 +76,22 @@ def get_info():
     name = os.listdir('../data/db')[-1]
     print(name)
     cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
-    # cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
-    cur.execute("""SELECT temperature_1, temperature_2, humidity, pressure, CO2, CO FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors);""")
-    # temperature_1 real,
-    # temperature_2 real,
-    #
-    # humidity real,
-    # pressure real,
-    # CO2 real,
-    # CO real?
+    cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
+    # cur.execute("""SELECT temperature_1, temperature_2, humidity, pressure, CO2, CO FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors);""")
+    #    temperature_1 real,
+    #    temperature_2 real,
+    #    humidity real,
+    #    pressure real,
+    #    CO2 real,
+    #    CO real,
+    #    voltage_system real,
+    #    voltage_heater real,
+    #    gyro_x real,
+    #    gyro_y real,
+    #    gyro_z real,
     res = cur.fetchone()
     print(res)
-    t1, t2, h, p, c2, c = res[0:]
+    t1, t2, h, p, c2, c, v_s, v_h, g_x, g_y, g_z = res
     cur.close()
     print(t1, t2, p)
     return jsonify({
@@ -95,5 +99,12 @@ def get_info():
         'pressure': p,
         'humidity': h,
         'CO2': c2,
-        'fire': False if c < 3 else True
+        'fire': False if c < 3 else True,
+        'voltageSystem': v_s,
+        'voltageHeater': v_h,
+        'gyro': {
+            'x': g_x,
+            'y': g_y,
+            'z': g_z
+        }
     })

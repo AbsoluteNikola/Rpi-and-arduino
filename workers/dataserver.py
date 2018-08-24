@@ -12,13 +12,17 @@ SQL_CREATE_TABLE = """
         humidity real,
         pressure real,
         CO2 real,
-        CO real
+        CO real,
+        voltage_system real,
+        voltage_heater real,
+        gyro_x real,
+        gyro_y real,
+        gyro_z real,
     );
 """
 
-SQL_INSERT = """
-    INSERT INTO sensors VALUES (:temperature_1, :temperature_2, :humidity, :pressure, :CO2, :CO);
-"""
+SQL_INSERT = """INSERT INTO sensors VALUES (:temperature_1, :temperature_2, :humidity, :pressure, :CO2, :CO, 
+:voltage_system real, :voltage_heater real, :gyro_x real, :gyro_y real, :gyro_z real); """
 
 
 class DataServer:

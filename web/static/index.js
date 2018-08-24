@@ -122,7 +122,13 @@ function addData(data){
 	document.getElementById('temperature1Val').innerText = `Temperature №1:${data.temperature[0]}`
 	document.getElementById('temperature2Val').innerText = `temperature №2:${data.temperature[1]}`
 	document.getElementById('humidityVal').innerText = `Humidity:${data.humidity}`
+	document.getElementById('voltageSystem').innerText = data.voltageSystem
+	document.getElementById('voltageHeater').innerText = data.voltageHeater
 	document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`
+	document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`
+	document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`
+	document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`
+	
 	fire_el = document.getElementById('fire');
 	if(data.fire == true && fire_el.getAttribute('active') == 'false'){
 		fire_el.src = '/static/pictures/fire_active.png';
@@ -133,7 +139,7 @@ function addData(data){
 		fire_el.setAttribute('active', 'false');
 	}
 	for(var sensor in data){
-		if(sensor == 'fire')
+		if(sensor == 'fire' || sensor == 'voltageSystem' || sensor == 'voltageHeater' || sensor == 'gyro')
 			continue;
 		var chart = window[sensor + 'Chart'];
 		
@@ -186,10 +192,6 @@ function checkLogin(){
 	$.post({
 		url: 'checkLogin',
 		data: {password: $('#password')[0].value},
-		success: function(result){
-			if(result == 'True')
-				window.location.href = "/getAdmin";
-		}
 	})
 }
 

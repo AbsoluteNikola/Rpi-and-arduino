@@ -1,104 +1,104 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="static/libs/bootstrap.min.css">
-    <!--<link rel="stylesheet" type="text/css" href="style.css"> -->
-    <title>Samp0_team</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="static/libs/bootstrap.min.css">
+  <!--<link rel="stylesheet" type="text/css" href="style.css"> -->
+  <title>Samp0_team</title>
 
-    <style type="text/css">
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
+  <style type="text/css">
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
 
-/* Hide default HTML checkbox */
-.switch input {display:none;}
+  /* Hide default HTML checkbox */
+  .switch input {display:none;}
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
 
-.slider.round:before {
-  border-radius: 50%;
-}
-    </style>
+  .slider.round:before {
+    border-radius: 50%;
+  }
+</style>
 
 
-  </head>
+</head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Samp0_team</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <img src="static/pictures/fire.png" id="fire" active="false">
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li></li>
-          </ul>
-          <form action="javascript:void(null);" onsubmit="checkLogin()" class="form-inline my-2 my-lg-0" method="POST">
-            <input type="password" class="form-control mr-sm-2 float-left" name="password" id="password" placeholder="Password">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Log In</button>
-          </form>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Samp0_team</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <img src="static/pictures/fire.png" id="fire" active="false">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li></li>
+      </ul>
+      <form action="javascript:void(null);" onsubmit="checkLogin()" class="form-inline my-2 my-lg-0" method="POST">
+        <input type="password" class="form-control mr-sm-2 float-left" name="password" id="password" placeholder="Password">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Log In</button>
+      </form>
+    </div>
+  </nav>
+  <div class="conteiner-fluid">
+    <div class="row no-gutters">
+      <div class="col-sm-12 col-lg-6">
+        <div class="cam ">
+          <img src="state.jpg" id="camera" style="padding: 10px;" width="100%">
         </div>
-    </nav>
-    <div class="conteiner-fluid">
-      <div class="row no-gutters">
-        <div class="col-sm-12 col-lg-6">
-          <div class="cam ">
-            <img src="state.jpg" id="camera" style="padding: 10px;" width="100%">
-          </div>
-        </div>
-        <div class="col-sm-12 col-lg-6 sensor-text">
-          <table class="table">
+      </div>
+      <div class="col-sm-12 col-lg-6 sensor-text">
+        <table class="table">
           <thead>
             <tr>
               <th scope="col">Sw</th>
@@ -109,77 +109,87 @@ input:checked + .slider:before {
           <tbody>
             <tr>
               <td><label class="switch">
-            <input type="checkbox" id="CO2plus" onchange="startDevice('CO2plus')">
-            <span class="slider round"></span>
-            </label></td>
+                <input type="checkbox" id="CO2plus" onchange="startDevice('CO2plus')">
+                <span class="slider round"></span>
+              </label></td>
               <td>CO2 +</td>
               <td>CO2 value</td>
             </tr>
             <tr>
               <td><label class="switch">
-            <input type="checkbox" id="CO2minus" onchange="startDevice('CO2minus')">
-            <span class="slider round"></span>
-            </label></td>
+                <input type="checkbox" id="CO2minus" onchange="startDevice('CO2minus')">
+                <span class="slider round"></span>
+              </label></td>
               <td>CO2 -> O2</td>
               <td>CO2 Value</td>
             </tr>
             <tr>
               <td><label class="switch">
-            <input type="checkbox" id="Light" onchange="startDevice('Light')">
-            <span class="slider round"></span>
-            </label></td>
+                <input type="checkbox" id="Light" onchange="startDevice('Light')">
+                <span class="slider round"></span>
+              </label></td>
               <td>Light</td>
               <td>Photorezistor</td>
             </tr>
             <tr>
               <td><label class="switch">
-            <input type="checkbox" id="Heater" onchange="startDevice('Heater')">
-            <span class="slider round"></span>
-            </label></td>
+                <input type="checkbox" id="Heater" onchange="startDevice('Heater')">
+                <span class="slider round"></span>
+              </label></td>
               <td>Heater</td>
               <td>Temperature</td>
             </tr>
-        </tbody>
-     </table>
-         
-        </div>
-      </div>
-<div class="conteiner-fluid">
-          <div class="row no-gutters">
-            <div class="col-sm-4 col-lg-2"><div id="pressureVal">Pressure:</div></div>
-            <div class="col-sm-4 col-lg-2"><div id="temperature1Val">Temperature №1:</div></div>
-            <div class="col-sm-4 col-lg-2"><div id="temperature2Val">Temperature №2:</div></div>
-            <div class="col-sm-4 col-lg-2"><div id="humidityVal">Humidity:</div></div>
-            <div class="col-sm-4 col-lg-2"><div id="CO2Val">CO2:</div></div>
-          </div>
-         </div>
-  </div>
-      <!--CHARTS-->
-      <div class="row no-gutters">
-        <div class="col">
-          <div class="chart-container">
-            <canvas id="temperatureChart"></canvas>
-          </div>
-          
-          <div class="chart-container">
-            <canvas id="humidityChart"></canvas>
-          </div>
-        </div>
-        <div class="col">
-          <div class="chart-container">
-            <canvas id="pressureChart"></canvas>
-          </div>
-          <div class="chart-container">
-            <canvas id="CO2Chart"></canvas>
-          </div>
+          </tbody>
+        </table>
 
-        </div>
       </div>
     </div>
-    <script src="static/libs/jquery-3.3.1.min.js"></script>
-    <script src="static/libs/popper.min.js"></script>
-    <script src="static/libs/bootstrap.min.js"></script>
-    <script src="static/libs/Chart.bundle.min.js"></script>
-    <script src="static/index.js"></script>
-  </body>
+    <div class="row">
+      <div class="col-3">Gyro:</div>
+      <div class="col-3" id="gyroX">X</div>
+      <div class="col-3" id="gyroY">Y</div>
+      <div class="col-3" id="gyroZ">z</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Voltage_system:<span id="voltageSystem">16</span></div>
+      <div class="col-6">Voltage heater:<span id="voltageHeater">12</span></div>
+    </div>
+    <div class="conteiner-fluid">
+      <div class="row no-gutters">
+        <div class="col-sm-4 col-lg-2"><div id="pressureVal">Pressure:</div></div>
+        <div class="col-sm-4 col-lg-2"><div id="temperature1Val">Temperature №1:</div></div>
+        <div class="col-sm-4 col-lg-2"><div id="temperature2Val">Temperature №2:</div></div>
+        <div class="col-sm-4 col-lg-2"><div id="humidityVal">Humidity:</div></div>
+        <div class="col-sm-4 col-lg-2"><div id="CO2Val">CO2:</div></div>
+      </div>
+    </div>
+  </div>
+  <!--CHARTS-->
+  <div class="row no-gutters">
+    <div class="col">
+      <div class="chart-container">
+        <canvas id="temperatureChart"></canvas>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="humidityChart"></canvas>
+      </div>
+    </div>
+    <div class="col">
+      <div class="chart-container">
+        <canvas id="pressureChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="CO2Chart"></canvas>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script src="static/libs/jquery-3.3.1.min.js"></script>
+<script src="static/libs/popper.min.js"></script>
+<script src="static/libs/bootstrap.min.js"></script>
+<script src="static/libs/Chart.bundle.min.js"></script>
+<script src="static/index.js"></script>
+</body>
 </html>
