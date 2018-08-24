@@ -118,16 +118,16 @@ window.pressureChart = new function buildPressure(){
 
 
 function addData(data){
-	document.getElementById('pressureVal').innerText = `Pressure:${data.pressure}`
-	document.getElementById('temperature1Val').innerText = `Temperature №1:${data.temperature[0]}`
-	document.getElementById('temperature2Val').innerText = `temperature №2:${data.temperature[1]}`
-	document.getElementById('humidityVal').innerText = `Humidity:${data.humidity}`
-	document.getElementById('voltageSystem').innerText = data.voltageSystem
-	document.getElementById('voltageHeater').innerText = data.voltageHeater
-	document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`
-	document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`
-	document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`
-	document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`
+	document.getElementById('pressureVal').innerText = `Pressure:${data.pressure}`;
+	document.getElementById('temperature1Val').innerText = `Temperature №1:${data.temperature[0]}`;
+	document.getElementById('temperature2Val').innerText = `temperature №2:${data.temperature[1]}`;
+	document.getElementById('humidityVal').innerText = `Humidity:${data.humidity}`;
+	document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`;
+	document.getElementById('voltageSystem').innerText = data.voltageSystem;
+	document.getElementById('voltageHeater').innerText = data.voltageHeater;
+	document.getElementById('gyroX').innerText = data.gyro.x;
+	document.getElementById('gyroY').innerText = data.gyro.x;
+	document.getElementById('gyroZ').innerText = data.gyro.x;
 	
 	fire_el = document.getElementById('fire');
 	if(data.fire == true && fire_el.getAttribute('active') == 'false'){
