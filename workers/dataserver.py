@@ -5,6 +5,8 @@ import sqlite3
 from datetime import date
 from arduino import ArduinoConn, SENSORS_NUMBER
 
+sys.stdout = sys.stderr
+
 SQL_CREATE_TABLE = """
     CREATE TABLE sensors (
         temperature_1 real,
