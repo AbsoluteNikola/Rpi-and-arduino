@@ -126,8 +126,8 @@ function addData(data){
 	document.getElementById('voltageSystem').innerText = data.voltageSystem;
 	document.getElementById('voltageHeater').innerText = data.voltageHeater;
 	document.getElementById('gyroX').innerText = data.gyro.x;
-	document.getElementById('gyroY').innerText = data.gyro.x;
-	document.getElementById('gyroZ').innerText = data.gyro.x;
+	document.getElementById('gyroY').innerText = data.gyro.y;
+	document.getElementById('gyroZ').innerText = data.gyro.z;
 	
 	fire_el = document.getElementById('fire');
 	if(data.fire == true && fire_el.getAttribute('active') == 'false'){
