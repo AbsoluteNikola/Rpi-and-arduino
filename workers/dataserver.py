@@ -34,7 +34,7 @@ class DataServer:
         while ('ttyACM0' not in os.listdir('/dev')) and ('ttyUSB0' not in os.listdir('/dev')):
             sleep(0.1)
         print('arduino with us')
-        sleep(50)
+        # sleep(50)
         self.arduino = ArduinoConn('/dev/ttyACM0' if len(sys.argv) < 2 else sys.argv[-1])
         self.db = None
         self.db_cursor = None
