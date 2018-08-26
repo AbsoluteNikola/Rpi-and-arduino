@@ -37,9 +37,9 @@ class DataServer:
         sleep(50)
         tty = None
         if 'ttyACM0' in os.listdir('/dev'):
-           tty = 'ACM0'
+           tty = '/dev/ttyACM0'
         elif 'ttyUSB0' in os.listdir('/dev'):
-            tty = 'ttyUSB0'
+            tty = '/dev/ttyUSB0'
         else:
             exit()
         self.arduino = ArduinoConn(tty)
