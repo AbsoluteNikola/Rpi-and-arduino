@@ -10,8 +10,8 @@ SENSORS_NUMBER = 11
 class ArduinoConn:
 
     def __init__(self, tty: str):
-        if not tty.startswith('/dev/ttyACM'):
-            raise ValueError('tty must be like /dev/tty/ACM0')
+        #if not tty.startswith('/dev/ttyACM'):
+        #    raise ValueError('tty must be like /dev/tty/ACM0')
         self.s = serial.Serial(tty)
         self.data = b''
         self.byte = b''
