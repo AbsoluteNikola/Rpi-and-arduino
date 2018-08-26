@@ -35,7 +35,14 @@ class DataServer:
             sleep(0.1)
         print('arduino with us')
         # sleep(50)
-        self.arduino = ArduinoConn('/dev/ttyACM0' if len(sys.argv) < 2 else sys.argv[-1])
+        tty = None
+        if 'ttyACM0' in os.listdir('/dev'):
+           tty = 'ACM0'
+        elif 'ttyUSB0' in os.listdir('/dev'):
+            tty = 'ttyUSB0'
+        else:
+            exit()
+        self.arduino = ArduinoConn(tty)
         self.db = None
         self.db_cursor = None
         self.date = date.today()
