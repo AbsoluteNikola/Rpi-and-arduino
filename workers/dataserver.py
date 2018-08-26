@@ -34,7 +34,7 @@ class DataServer:
         while ('ttyACM0' not in os.listdir('/dev')) and ('ttyUSB0' not in os.listdir('/dev')):
             sleep(0.1)
         print('arduino with us')
-        # sleep(50)
+        sleep(50)
         tty = None
         if 'ttyACM0' in os.listdir('/dev'):
            tty = 'ACM0'
