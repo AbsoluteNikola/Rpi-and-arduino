@@ -34,15 +34,15 @@ class DataServer:
         while ('ttyACM0' not in os.listdir('/dev')) and ('ttyUSB0' not in os.listdir('/dev')):
             sleep(0.1)
         print('arduino with us')
-        sleep(50)
         tty = None
         if 'ttyACM0' in os.listdir('/dev'):
-           tty = '/dev/ttyACM0'
+           tty = '/dev/ttyACKNM0'
         elif 'ttyUSB0' in os.listdir('/dev'):
             tty = '/dev/ttyUSB0'
         else:
             exit()
         self.arduino = ArduinoConn(tty)
+        sleep(50)
         self.db = None
         self.db_cursor = None
         self.date = date.today()
@@ -80,6 +80,7 @@ class DataServer:
             self.db_cursor.execute(SQL_INSERT, results)
             self.db.commit()
             print('insert ', results)
+
 
 if __name__ == '__main__':
     print('start serving...')
