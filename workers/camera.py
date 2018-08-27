@@ -13,6 +13,8 @@ class CameraServer:
     def serve(self):
         x = False
         while True:
+            if os.path.exists('tmp'):
+                os.remove('tmp')
             start = time.time()
             self.camera.capture('1.jpg' if x else '2.jpg', resize=(600, 400))
             if x:

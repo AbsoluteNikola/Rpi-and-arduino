@@ -3,6 +3,7 @@ Description=run cameraserver to capture situation in station, created by Nikolay
 After=network.target
 
 [Service]
+Restart=always
 User=pi
 Group=pi
 WorkingDirectory=/home/pi/Rpi-and-arduino/workers

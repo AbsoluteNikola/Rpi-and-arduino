@@ -36,7 +36,7 @@ class DataServer:
         print('arduino with us')
         tty = None
         if 'ttyACM0' in os.listdir('/dev'):
-           tty = '/dev/ttyACKNM0'
+           tty = '/dev/ttyACM0'
         elif 'ttyUSB0' in os.listdir('/dev'):
             tty = '/dev/ttyUSB0'
         else:
