@@ -17,11 +17,12 @@ void send_buf(char *buf, int len, int stopbyte=1) {
 }
 
 void send_msg(String msg) {
+  //Calc hash and send msg (bytes "{msg}\x00{hash}")
   int ack = 0, r = 0;
   while(!ack)
   {
     unsigned long long start = millis();
-  // resend msg if it was breaked
+    // resend msg if it was broken
     send_buf(msg.c_str(), msg.length() + 1);
     unsigned long hash = hash_msg(msg);
     send_buf((char*)&hash, sizeof(hash));

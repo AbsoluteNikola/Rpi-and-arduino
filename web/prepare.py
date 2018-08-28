@@ -1,3 +1,7 @@
+"""
+disable all used pins on raspberry starts with Pi startup
+"""
+
 from RPi import GPIO
 from web import Sync, pins
 

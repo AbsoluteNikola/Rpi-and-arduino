@@ -43,7 +43,7 @@ class DataServer:
             exit()
         self.arduino = ArduinoConn(tty)
         if not 'ns' in sys.argv:
-            sleep(50)
+            sleep(10)
         self.db = None
         self.db_cursor = None
         self.date = date.today()

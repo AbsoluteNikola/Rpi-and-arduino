@@ -1,6 +1,12 @@
+"""
+This is main file for web application
+made with Flask
+"""
+
 import sqlite3
 import os
 from time import sleep
+from datetime import date
 from flask import Flask, jsonify, request, make_response, abort
 from RPi import GPIO
 # from random import choice, sample
@@ -8,6 +14,7 @@ from secrets import PASSWORD, COOKIE
 
 app = Flask(__name__)
 
+# used pins
 pins = {
     'CO2plus': 7,
     'CO2minus': 3,
@@ -17,6 +24,9 @@ pins = {
 
 
 class Sync:
+    """
+    class for synchronization process when using pins
+    """
     def __enter__(self):
         while os.path.exists('sync.txt'):
             sleep(0.01)
@@ -28,11 +38,19 @@ class Sync:
 
 @app.route('/', methods=('GET',))
 def index():
+    """
+
+    :return: index html on rout /
+    """
     return app.send_static_file('index.html')
 
 
 @app.route('/checkLogin', methods=('POST', ))
 def check_login():
+    """
+    check login, if it same with config's pass, set cookie for accept to pins control
+    :return:
+    """
     print(request.form.get('password'))
     if request.form.get('password') == PASSWORD:
         resp = make_response('True')
@@ -42,14 +60,12 @@ def check_login():
     return resp
 
 
-@app.route('/getAdmin', methods=('GET', ))
-def get_admin():
-
-    return app.send_static_file('admin.html')
-
-
 @app.route('/startDevice', methods=('POST', ))
 def start_device():
+    """
+    run device like LED stripe and etc
+    :return:
+    """
     if request.cookies.get('password') != COOKIE:
         return jsonify('Error')
     with Sync() as sync:
@@ -73,11 +89,17 @@ def start_device():
 
 @app.route('/getInfo', methods=('GET',))
 def get_info():
-    name = os.listdir('../data/db')[-1]
-    print(name)
+    """
+    get info from Database (SQLite) and send it to browser
+    :return:
+    """
+
+    year = date.today().year
+    month = date.today().month
+    day = date.today().day
+    name = '{}_{}_{}.db'.format(year, month, day)
     cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
     cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
-    # cur.execute("""SELECT temperature_1, temperature_2, humidity, pressure, CO2, CO FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors);""")
     #    temperature_1 real,
     #    temperature_2 real,
     #    humidity real,
