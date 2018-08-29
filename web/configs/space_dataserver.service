@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 User=pi
-Group=pi
+Group=www-data
 WorkingDirectory=/home/pi/Rpi-and-arduino/workers
 ExecStart=/usr/bin/python3 dataserver.py
 

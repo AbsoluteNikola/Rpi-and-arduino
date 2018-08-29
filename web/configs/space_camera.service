@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Restart=always
 User=pi
-Group=pi
+Group=www-data
 WorkingDirectory=/home/pi/Rpi-and-arduino/workers
 ExecStart=/usr/bin/python3 camera.py
 
