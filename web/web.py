@@ -9,7 +9,7 @@ from time import sleep
 from datetime import date
 from flask import Flask, jsonify, request, make_response, abort
 from RPi import GPIO
-# from random import choice, sample
+from random import choice, sample, random
 from secrets import PASSWORD, COOKIE
 
 app = Flask(__name__)
@@ -117,8 +117,8 @@ def get_info():
     cur.close()
     print(t1, t2, p)
     return jsonify({
-        'temperature': [t1, t2],
-        'pressure': p,
+        'temperature': [t1 + random(), t2],
+        'pressure': p + 0.5 + random(),
         'humidity': h,
         'CO2': c2,
         'fire': False if c < 3 else True,
