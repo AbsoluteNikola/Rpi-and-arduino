@@ -118,7 +118,7 @@ def get_info():
     print(t1, t2, p)
     return jsonify({
         'temperature': [round(t2 + random(), 1), t2],
-        'pressure': round(p + 0.5 + random()),
+        'pressure': round(p + 0.5 + random(), 2),
         'humidity': h,
         'CO2': c2,
         'fire': False if c < 3 else True,
