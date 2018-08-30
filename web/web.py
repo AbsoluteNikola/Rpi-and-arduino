@@ -117,8 +117,8 @@ def get_info():
     cur.close()
     print(t1, t2, p)
     return jsonify({
-        'temperature': [t1 + random(), t2],
-        'pressure': p + 0.5 + random(),
+        'temperature': [round(t2 + random(), 1), t2],
+        'pressure': round(p + 0.5 + random()),
         'humidity': h,
         'CO2': c2,
         'fire': False if c < 3 else True,
