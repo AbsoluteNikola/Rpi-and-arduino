@@ -113,8 +113,8 @@ window.pressureChart = new function buildPressure(){
 			scales: {
 				yAxes: [{
        				ticks: {
-            			suggestedMax: 1000,
-            			suggestedMin: 1400,
+            			min: 1000,
+            			max: 1400,
         			}
     			}]
     		}
