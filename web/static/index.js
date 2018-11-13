@@ -59,6 +59,12 @@ window.humidityChart = new function buildHumidity(){
 				display: true,
 				text: 'Humidity'
 			}
+			yAxes: [{
+       			ticks: {
+            		min: 1000,
+            		max: 1400,
+        		}
+    		}]
 		}
 	});
 	console.log('humidityChart was built');
