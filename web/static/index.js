@@ -59,12 +59,6 @@ window.humidityChart = new function buildHumidity(){
 				display: true,
 				text: 'Humidity'
 			}
-			yAxes: [{
-       			ticks: {
-            		min: 1000,
-            		max: 1400,
-        		}
-    		}]
 		}
 	});
 	console.log('humidityChart was built');
@@ -115,7 +109,13 @@ window.pressureChart = new function buildPressure(){
 			title: {
 				display: true,
 				text: 'Pressure'
-			}
+			},
+			yAxes: [{
+       			ticks: {
+            		min: 1000,
+            		max: 1400,
+        		}
+    		}]
 		}
 	});
 	console.log('pressureChart was built')
