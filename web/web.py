@@ -58,7 +58,7 @@ def play_audio(audio=''):
         audio = os.listdir('../data/audio')[-1]
 
     with Sync('audio') as sync:
-        Popen(["ffplay", "-nodisp", "-autoexit", f'../data/audio/{audio}'], stdout=open('/dev/null'), stderr=open('/dev/null'))
+        Popen(["ffplay", "-nodisp", "-autoexit", '../data/audio/{}'.format(audio)], stdout=open('/dev/null'), stderr=open('/dev/null'))
     return jsonify("ok")
 
 
