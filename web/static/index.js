@@ -274,4 +274,4 @@ function updateAll() {
     camera.src = "state.jpg";
 }
 
-//timer = setInterval(updateAll, 1000);
+timer = setInterval(updateAll, 1000);
