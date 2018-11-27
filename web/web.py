@@ -32,12 +32,12 @@ class Sync:
         self.file_name = file_name
 
     def __enter__(self):
-        while os.path.exists(f'{self.file_name}.sync'):
+        while os.path.exists('{}.sync'.format(self.file_name)):
             sleep(0.01)
-        open(f'{self.file_name}.sync', 'w').write('w')
+        open('{}.sync'.format(self.file_name), 'w').write('w')
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        os.remove(f'{self.file_name}.sync')
+        os.remove('{}.sync'.format(self.file_name))
 
 
 @app.route('/', methods=('GET',))
@@ -69,7 +69,7 @@ def get_audio():
 
     f = request.files['audio']
     f_name = str(time()).replace('.', '_')
-    f.save(f"../data/audio/{f_name}.wav")
+    f.save("../data/audio/{}.wav".format(f_name))
     play_audio(f_name + '.wav')
     return jsonify('ok')
 
