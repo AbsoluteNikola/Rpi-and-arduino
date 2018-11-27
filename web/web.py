@@ -3,13 +3,14 @@ This is main file for web application
 made with Flask
 """
 
-import sqlite3
 import os
-from time import sleep
+from time import sleep, time
 from datetime import date
+from random import choice, sample, random, randint
+from subprocess import Popen
 from flask import Flask, jsonify, request, make_response, abort
 from RPi import GPIO
-from random import choice, sample, random
+import sqlite3
 from secrets import PASSWORD, COOKIE
 
 app = Flask(__name__)
@@ -25,15 +26,18 @@ pins = {
 
 class Sync:
     """
-    class for synchronization process when using pins
+    class for synchronization process when using pins and audio player
     """
+    def __init__(self, file_name):
+        self.file_name = file_name
+
     def __enter__(self):
-        while os.path.exists('sync.txt'):
+        while os.path.exists(f'{self.file_name}.sync'):
             sleep(0.01)
-        open('sync.txt', 'w').write('w')
+        open(f'{self.file_name}.sync', 'w').write('w')
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        os.remove('sync.txt')
+        os.remove(f'{self.file_name}.sync')
 
 
 @app.route('/', methods=('GET',))
@@ -45,13 +49,38 @@ def index():
     return app.send_static_file('index.html')
 
 
+@app.route('/playAudio', methods=['POST', 'GET'])
+def play_audio(audio=''):
+    if request.cookies.get('password') != COOKIE:
+        abort(403)
+
+    if not audio:
+        audio = os.listdir('../data/audio')[-1]
+
+    with Sync('audio') as sync:
+        Popen(["ffplay", "-nodisp", "-autoexit", f'../data/audio/{audio}'], stdout=open('/dev/null'), stderr=open('/dev/null'))
+    return jsonify("ok")
+
+
+@app.route('/putAudio', methods=['POST'])
+def get_audio():
+    if request.cookies.get('password') != COOKIE:
+        abort(403)
+
+    f = request.files['audio']
+    f_name = str(time()).replace('.', '_')
+    f.save(f"../data/audio/{f_name}.wav")
+    play_audio(f_name + '.wav')
+    return jsonify('ok')
+
+
 @app.route('/checkLogin', methods=('POST', ))
 def check_login():
     """
     check login, if it same with config's pass, set cookie for accept to pins control
     :return:
     """
-    print(request.form.get('password'))
+    print(request.form.get('password'), PASSWORD)
     if request.form.get('password') == PASSWORD:
         resp = make_response('True')
         resp.set_cookie('password', COOKIE)
@@ -67,8 +96,9 @@ def start_device():
     :return:
     """
     if request.cookies.get('password') != COOKIE:
-        return jsonify('Error')
-    with Sync() as sync:
+        abort(403)
+
+    with Sync('gpio') as sync:
         GPIO.setmode(GPIO.BOARD)
         sensor = pins.get(request.form.get('sensor'))
         GPIO.setup(sensor, GPIO.OUT)
@@ -98,8 +128,8 @@ def get_info():
     month = date.today().month
     day = date.today().day
     name = '{}_{}_{}.db'.format(year, month, day)
-    cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
-    cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
+    # cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
+    # cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
     #    temperature_1 real,
     #    temperature_2 real,
     #    humidity real,
@@ -111,10 +141,12 @@ def get_info():
     #    gyro_x real,
     #    gyro_y real,
     #    gyro_z real,
-    res = cur.fetchone()
+    # res = cur.fetchone()
+    res = [randint(-100, 100) for _ in range(11)]
     print(res)
     t1, t2, h, p, c2, c, v_s, v_h, g_x, g_y, g_z = res
-    cur.close()
+    # cur.close()
+    p = randint(1000, 1400)
     print(t1, t2, p)
     return jsonify({
         'temperature': [t1, t2],

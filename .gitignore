@@ -2,4 +2,5 @@
 *.db
 *.log
 *.jpg
+*.wav
 secrets.py

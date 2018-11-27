@@ -6,6 +6,8 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="static/libs/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="debug.css"> -->
+
   <title>Samp0_team</title>
 
   <style type="text/css">
@@ -66,6 +68,13 @@
   .slider.round:before {
     border-radius: 50%;
   }
+  #triangle-right {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-left: 10px solid white;
+  border-bottom: 5px solid transparent;
+}
 </style>
 
 
@@ -77,11 +86,19 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <img src="static/pictures/fire.png" id="fire" active="false">
+    <img src="pictures/fire.png" id="fire" active="false">
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li></li>
       </ul>
+      <button class="btn btn-primary my-2 my-sm-0" id="recordButton" onclick="startRecord()" type="submit">Запись</button>
+      &nbsp;
+
+      <button class="btn btn-primary my-2 my-sm-0" id="sendButton" onclick="sendRecord()" type="submit">Отправить</button>
+      &nbsp;
+      <audio controls src="" id="player" type="audio/wav">
+      </audio>
+      &nbsp;
       <form action="javascript:void(null);" onsubmit="checkLogin()" class="form-inline my-2 my-lg-0" method="POST">
         <input type="password" class="form-control mr-sm-2 float-left" name="password" id="password" placeholder="Password">
         <button class="btn btn-primary my-2 my-sm-0" type="submit">Log In</button>
@@ -145,7 +162,7 @@
           <div class="col-3" id="gyroY">Y</div>
           <div class="col-3" id="gyroZ">z</div>
         </div>
-        <div class="row">
+        <div class="row no-gutters">
           <div class="col-6">Voltage_system:<span id="voltageSystem">16</span></div>
           <div class="col-6">Voltage heater:<span id="voltageHeater">12</span></div>
         </div>
@@ -188,6 +205,7 @@
 <script src="static/libs/popper.min.js"></script>
 <script src="static/libs/bootstrap.min.js"></script>
 <script src="static/libs/Chart.bundle.min.js"></script>
+<script src="static/libs/record.js"></script>
 <script src="static/index.js"></script>
 </body>
 </html>
