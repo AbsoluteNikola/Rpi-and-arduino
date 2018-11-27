@@ -269,9 +269,8 @@ function sendRecord() {
 
 
 function updateAll() {
-    getInfo()
-    camera = document.getElementById('camera');
-    $("camera").removeAttr("src").attr("src", "/state.jpg?" + Math.random());;
+    getInfo();
+    $("camera").removeAttr("src").attr("src", "/state.jpg?" + Math.random());
 }
 
 timer = setInterval(updateAll, 1000);
