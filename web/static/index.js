@@ -268,7 +268,7 @@ function sendRecord() {
 }
 
 function loadImg() {
-	var name = `/state.jpg?' + ${Math.random()};
+	var name = "/state.jpg?" + String(Math.random());
     $("#cameraLoader")
     	.attr('src', name)
         .attr('onload', function() {
