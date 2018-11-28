@@ -271,9 +271,9 @@ function loadImg() {
 	var name = `/state.jpg?${Math.random()}`
     $("#cameraLoader")
     	.attr('src', name)
-        .attr('onload', `function() {
-        	$("#camera").attr('src', ${name});
-        }`);
+        .attr('onload', function() {
+        	$("#camera").attr('src', name);
+        });
 }
 
 timer = setInterval(
