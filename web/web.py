@@ -152,7 +152,7 @@ def get_info():
         'pressure': [p_1, p_2],
         'humidity': h,
         'CO2': c2,
-        'fire': c < 3,
+        'fire': c > 3,
         'voltageSystem': v_s,
         'voltageHeater': v_h,
         'gyro': {
