@@ -128,9 +128,9 @@ def get_info():
     month = date.today().month
     day = date.today().day
     name = '{}_{}_{}.db'.format(year, month, day)
-    # cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
-    # cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
-    #    temperature_1 real,
+    cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
+    cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
+    #   temperature_1 real,
     #    temperature_2 real,
     #    humidity real,
     #    pressure real,
@@ -141,16 +141,15 @@ def get_info():
     #    gyro_x real,
     #    gyro_y real,
     #    gyro_z real,
-    # res = cur.fetchone()
-    res = [randint(-100, 100) for _ in range(11)]
+    res = cur.fetchone()
     print(res)
-    t1, t2, h, p, c2, c, v_s, v_h, g_x, g_y, g_z = res
+    t1, t2, h, p_1, p_2, c2, c, v_s, v_h, g_x, g_y, g_z = res
     # cur.close()
     p = randint(1000, 1400)
     print(t1, t2, p)
     return jsonify({
         'temperature': [t1, t2],
-        'pressure': p,
+        'pressure': [p_1, p_2],
         'humidity': h,
         'CO2': c2,
         'fire': c < 3,

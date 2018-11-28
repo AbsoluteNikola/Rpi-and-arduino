@@ -98,6 +98,12 @@ window.pressureChart = new function buildPressure() {
                 data: [],
                 borderColor: 'rgb(0, 105, 217)',
                 backgroundColor: 'rgba(0, 105, 217, 0.2)'
+            },
+            {
+            	label: "№2",
+                data: [],
+                borderColor: 'rgb(255, 169, 0)',
+                fill: false
             }]
         },
         options: {

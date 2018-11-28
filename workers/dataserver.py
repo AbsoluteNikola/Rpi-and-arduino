@@ -12,7 +12,8 @@ SQL_CREATE_TABLE = """
         temperature_1 real,
         temperature_2 real,
         humidity real,
-        pressure real,
+        pressure_1 real,
+        pressure_2 real,
         CO2 real,
         CO real,
         voltage_system real,
@@ -23,7 +24,7 @@ SQL_CREATE_TABLE = """
     );
 """
 
-SQL_INSERT = """INSERT INTO sensors VALUES (:temperature_1, :temperature_2, :humidity, :pressure, :CO2, :CO, 
+SQL_INSERT = """INSERT INTO sensors VALUES (:temperature_1, :temperature_2, :humidity, :pressure_1, :pressure_2, :CO2, :CO, 
 :voltage_system, :voltage_heater, :gyro_x, :gyro_y, :gyro_z); """
 
 
