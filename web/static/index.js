@@ -222,7 +222,7 @@ function startRecord() {
         .then(function(stream) {
             $('#recordButton').removeClass('btn-primary').addClass('btn-danger');
             $('#recordButton').text("стоп")
-            $('#recordButton').attr("onclick","stopRecord()");
+            $('#recordButton').attr("onclick", "stopRecord()");
             audio.curStream = stream;
             audio.input = audio.context.createMediaStreamSource(stream);
             audio.recorder = new Recorder(audio.input);
@@ -234,44 +234,50 @@ function startRecord() {
 
 
 function stopRecord() {
-	if(!audio.recorder.recording)
-		return;
+    if (!audio.recorder.recording)
+        return;
     audio.recorder.stop();
     audio.curStream.getAudioTracks()[0].stop();
     audio.recorder.exportWAV(function(blob) {
         audio.file = blob;
-        document.getElementById("player").src = URL.createObjectURL(blob);       
+        document.getElementById("player").src = URL.createObjectURL(blob);
         console.log('stop recording')
         $('#recordButton').removeClass('btn-danger').addClass('btn-primary');
         $('#recordButton').text("запись")
-        $('#recordButton').attr("onclick","startRecord()");
+        $('#recordButton').attr("onclick", "startRecord()");
         $('#sendButton').removeClass('btn-danger').addClass('btn-primary');
     });
 }
 
 function sendRecord() {
-	form = new FormData();
-	form.append('audio', audio.file);
-	$.post({
-        url: '/putAudio',
-        data: form,
-        cache: false,
-        processData: false,
-        contentType: false
-    }).done(function () {
-    		console.log("send successfully");
-    		$('#sendButton').removeClass('btn-danger').addClass('btn-primary');
-    	})
-      .fail(function () {
-      		$('#sendButton').removeClass('btn-primary').addClass('btn-danger');
-      	});
+    form = new FormData();
+    form.append('audio', audio.file);
+    $.post({
+            url: '/putAudio',
+            data: form,
+            cache: false,
+            processData: false,
+            contentType: false
+        }).done(function() {
+            console.log("send successfully");
+            $('#sendButton').removeClass('btn-danger').addClass('btn-primary');
+        })
+        .fail(function() {
+            $('#sendButton').removeClass('btn-primary').addClass('btn-danger');
+        });
 }
 
-
-function updateAll() {
-    getInfo()
-    camera = document.getElementById('camera');
-    camera.src = "state.jpg";
+function loadImg() {
+	var name = `/state.jpg?${Math.random()}`
+    $("#cameraLoader")
+    	.attr('src', name)
+        .attr('onload', `function() {
+        	$("#camera").attr('src', ${name});
+        }`);
 }
 
-timer = setInterval(updateAll, 1000);
+timer = setInterval(
+    function() {
+        getInfo();
+        loadImg();
+    }, 1000);
