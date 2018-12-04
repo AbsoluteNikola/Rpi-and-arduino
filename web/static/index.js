@@ -167,7 +167,7 @@ function addData(data) {
         }
         // add new points
         for (var i = 0; i < data[sensor].length; i++) {
-            if (data[sensor][i] == -1.0 && chart.data.datasets[i].label != 'Error') {
+            if (data[sensor][i] === -1.0 && chart.data.datasets[i].label !== 'Error') {
                 chart.data.datasets[i].oldLabel = chart.data.datasets[i].label;
                 chart.data.datasets[i].oldColor = chart.data.datasets[i].borderColor;
                 console.log(chart.data.datasets[i].oldLabel, chart.data.datasets[i].oldColor);
@@ -176,10 +176,10 @@ function addData(data) {
                 //chart.data.datasets[i].backgroundColor = 'rgba(255, 0, 0, 1)'
                 chart.data.datasets[i].label = 'Error';
                 continue;
-            } else if (chart.data.datasets[i].label == 'Error' && data[sensor][i] != -1.0) {
+            } else if (chart.data.datasets[i].label ==='Error' && data[sensor][i] !== -1.0) {
                 chart.data.datasets[i].label = chart.data.datasets[i].oldLabel;
                 chart.data.datasets[i].borderColor = chart.data.datasets[i].oldColor;
-            } else if (chart.data.datasets[i].label == 'Error' && data[sensor][i] == -1.0) {
+            } else if (chart.data.datasets[i].label === 'Error' && data[sensor][i] === -1.0) {
                 continue;
             }
             chart.data.datasets[i].data[chart.data.labels.length - 1] = data[sensor][i];
@@ -201,6 +201,8 @@ function checkLogin() {
     $.post({
         url: 'checkLogin',
         data: { password: $('#password')[0].value },
+    }).success(function () {
+        alert('password is ok')
     })
 }
 
@@ -211,7 +213,7 @@ function startDevice(device) {
         data: { sensor: device },
         success: function(result) {
             if (result == 'Error')
-                return
+                return;
             d = document.getElementById(device);
             d.checked = result;
             console.log(`${device}:${d.checked}`);
