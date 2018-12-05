@@ -201,7 +201,7 @@ function checkLogin() {
     $.post({
         url: 'checkLogin',
         data: { password: $('#password')[0].value },
-    }).success(function () {
+    }).done(function () {
         alert('password is ok')
     })
 }

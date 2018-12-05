@@ -85,7 +85,7 @@ def check_login():
         resp = make_response('True')
         resp.set_cookie('password', COOKIE)
     else:
-        resp = make_response('False')
+        abort(403)
     return resp
 
 
