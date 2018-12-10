@@ -55,6 +55,9 @@ def play_audio(audio=''):
         abort(403)
 
     if not audio:
+        audio = request.form.get('audio')
+
+    if not audio:
         audio = os.listdir('../data/audio')[-1]
 
     with Sync('audio') as sync:
@@ -84,9 +87,10 @@ def check_login():
     if request.form.get('password') == PASSWORD:
         resp = make_response('True')
         resp.set_cookie('password', COOKIE)
+        return resp
     else:
         abort(403)
-    return resp
+
 
 
 @app.route('/startDevice', methods=('POST', ))
