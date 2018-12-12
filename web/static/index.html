@@ -86,22 +86,13 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <img src="static/pictures/fire.png" id="fire" active="false">
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li></li>
       </ul>
-      <button class="btn btn-primary my-2 my-sm-0" id="recordButton" onclick="startRecord()" type="submit">Запись</button>
-      &nbsp;
-
-      <button class="btn btn-primary my-2 my-sm-0" id="sendButton" onclick="sendRecord()" type="submit">Отправить</button>
-      &nbsp;
-      <audio controls src="" id="player" type="audio/wav">
-      </audio>
-      &nbsp;
       <form action="javascript:void(null);" onsubmit="checkLogin()" class="form-inline my-2 my-lg-0" method="POST">
-        <input type="password" class="form-control mr-sm-2 float-left" name="password" id="password" placeholder="Password">
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">Log In</button>
+        <input type="password" class="form-control mr-sm-2 float-left" name="password" id="password" placeholder="Пароль">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Войти</button>
       </form>
     </div>
   </nav>
@@ -117,8 +108,8 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Sw</th>
-              <th scope="col">System</th>
+              <th scope="col">Переключатель</th>
+              <th scope="col">Система</th>
             </tr>
           </thead>
           <tbody>
@@ -141,39 +132,76 @@
                 <input type="checkbox" id="Light" onchange="startDevice('Light')">
                 <span class="slider round"></span>
               </label></td>
-              <td>Light</td>
+              <td>Свет</td>
             </tr>
             <tr>
               <td><label class="switch">
                 <input type="checkbox" id="Heater" onchange="startDevice('Heater')">
                 <span class="slider round"></span>
               </label></td>
-              <td>Heater</td>
+              <td>Нвгреватель</td>
             </tr>
           </tbody>
         </table>
-        <div class="row no-gutters">
-          <div class="col-3">Gyro:</div>
-          <div class="col-3" id="gyroX">X</div>
-          <div class="col-3" id="gyroY">Y</div>
-          <div class="col-3" id="gyroZ">z</div>
+      </div>
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="col">
+      <div class="conteiner-fluid">
+      <div class="row no-gutters">
+        <div class="col">
+          <div class="conteiner-fluid">
+            <div class="row">
+              <div class="col-3">Гироскоп:</div>
+              <div class="col-3" id="gyroX">X</div>
+              <div class="col-3" id="gyroY">Y</div>
+              <div class="col-3" id="gyroZ">Z</div>
+            </div>
+            <div class="row">
+              <div class="col-3">Акселерометр:</div>
+              <div class="col-3" id="acmtrX">X</div>
+              <div class="col-3" id="acmtrY">Y</div>
+              <div class="col-3" id="acmtrZ">Z</div>
+            </div>
+            <div class="row">
+              <div class="col-6">Давление №1: <span id="pressure1Val">1231</span></div>
+              <div class="col-6">Давление №2: <snap id="pressure2Val">123132</span></div>  
+            </div>
+            <div class="row">
+              <div class="col-6">Температура №1: <span id="temperature1Val">12</span></div>
+              <div class="col-6">Температура №2: <span id="temperature2Val">12</span></div>
+            </div>
+            <div class="row">
+              <div class="col-6">Напряжение системы:<span id="voltageSystem">16</span></div>
+              <div class="col-6">Напряжение нагревателя:<span id="voltageHeater">12</span></div>  
+            </div>
+          </div>
         </div>
+      </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="conteiner-fluid">
+        <!-- SEND -->
         <div class="row no-gutters">
-          <div class="col-6">Voltage_system:<span id="voltageSystem">16</span></div>
-          <div class="col-6">Voltage heater:<span id="voltageHeater">12</span></div>
+          <button class="btn btn-primary col-3" id="recordButton" onclick="startRecord()" type="submit">Запись</button>
+            &nbsp;
+          
+          <button class="btn btn-primary" id="sendButton" onclick="sendRecord()" type="submit">Отправить</button>
+            &nbsp;
+          <audio controls src="" id="player" autoplay type="audio/wav"></audio>
+        </div>
+        <div class="row no-gutters" style="margin-top: 5px;">
+          <button class="btn btn-primary col-3" type="button" onclick="$()">Прослушать</button>
+          &nbsp;
+          <select id="audioSelect" class="form-control col-6" onfocus="getAudio()"></select>
+          &nbsp;
+          <!-- <audio controls src="" id="listener" class="col" type="audio/wav"></audio> -->
         </div>
       </div>
     </div>
     
-    <div class="conteiner-fluid">
-      <div class="row no-gutters">
-        <div class="col-sm-4 col-lg-2"><div id="pressureVal">Pressure:</div></div>
-        <div class="col-sm-4 col-lg-2"><div id="temperature1Val">Temperature №1:</div></div>
-        <div class="col-sm-4 col-lg-2"><div id="temperature2Val">Temperature №2:</div></div>
-        <div class="col-sm-4 col-lg-2"><div id="humidityVal">Humidity:</div></div>
-        <div class="col-sm-4 col-lg-2"><div id="CO2Val">CO2:</div></div>
-      </div>
-    </div>
   </div>
   <!--CHARTS-->
   <div class="row no-gutters">

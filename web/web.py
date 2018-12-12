@@ -9,7 +9,7 @@ from datetime import date
 from random import choice, sample, random, randint
 from subprocess import Popen
 from flask import Flask, jsonify, request, make_response, abort
-from RPi import GPIO
+# from RPi import GPIO
 import sqlite3
 from secrets import PASSWORD, COOKIE
 
@@ -49,30 +49,37 @@ def index():
     return app.send_static_file('index.html')
 
 
-@app.route('/playAudio', methods=['POST', 'GET'])
+# @app.route('/playAudio', methods=['POST', 'GET'])
 def play_audio(audio=''):
     if request.cookies.get('password') != COOKIE:
         abort(403)
 
     if not audio:
-        audio = request.form.get('audio')
-
-    if not audio:
-        audio = os.listdir('../data/audio')[-1]
+        audio = os.listdir('../data/audio/incoming')[-1]
 
     with Sync('audio') as sync:
-        Popen(["ffplay", "-nodisp", "-autoexit", '../data/audio/{}'.format(audio)], stdout=open('/dev/null'), stderr=open('/dev/null'))
+        Popen(["ffplay", "-nodisp", "-autoexit", '../data/audio/incoming/{}'.format(audio)],
+              stdout=open('/dev/null'),
+              stderr=open('/dev/null'))
     return jsonify("ok")
 
 
-@app.route('/putAudio', methods=['POST'])
+@app.route('/getAudio', methods=['GET'])
 def get_audio():
+    data = {
+        key: val for key, val in enumerate(os.listdir('../data/audio/outgoing'))
+    }
+    return jsonify(data)
+
+
+@app.route('/putAudio', methods=['POST'])
+def put_audio():
     if request.cookies.get('password') != COOKIE:
         abort(403)
 
     f = request.files['audio']
     f_name = str(time()).replace('.', '_')
-    f.save("../data/audio/{}.wav".format(f_name))
+    f.save("../data/audio/incoming/{}.wav".format(f_name))
     play_audio(f_name + '.wav')
     return jsonify('ok')
 
@@ -90,7 +97,6 @@ def check_login():
         return resp
     else:
         abort(403)
-
 
 
 @app.route('/startDevice', methods=('POST', ))

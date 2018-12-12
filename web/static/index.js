@@ -23,7 +23,7 @@ window.temperatureChart = new function buildTemperature() {
         options: {
             title: {
                 display: true,
-                text: 'Temperature'
+                text: 'Температура'
             },
             scales: {
                 yAxes: [{
@@ -54,7 +54,7 @@ window.humidityChart = new function buildHumidity() {
         options: {
             title: {
                 display: true,
-                text: 'Humidity'
+                text: 'Влажность'
             }
         }
     });
@@ -94,7 +94,7 @@ window.pressureChart = new function buildPressure() {
         data: {
             labels: [],
             datasets: [{
-                label: "",
+                label: "№1",
                 data: [],
                 borderColor: 'rgb(0, 105, 217)',
                 backgroundColor: 'rgba(0, 105, 217, 0.2)'
@@ -109,7 +109,7 @@ window.pressureChart = new function buildPressure() {
         options: {
             title: {
                 display: true,
-                text: 'Pressure'
+                text: 'Давление'
             },
             scales: {
                 yAxes: [{
@@ -126,25 +126,24 @@ window.pressureChart = new function buildPressure() {
 
 
 function addData(data) {
-    document.getElementById('pressureVal').innerText = `Pressure:${data.pressure}`;
-    document.getElementById('temperature1Val').innerText = `Temperature №1:${data.temperature[0]}`;
-    document.getElementById('temperature2Val').innerText = `temperature №2:${data.temperature[1]}`;
-    document.getElementById('humidityVal').innerText = `Humidity:${data.humidity}`;
-    document.getElementById('CO2Val').innerText = `CO2:${data.CO2}`;
-    document.getElementById('voltageSystem').innerText = data.voltageSystem;
-    document.getElementById('voltageHeater').innerText = data.voltageHeater;
-    document.getElementById('gyroX').innerText = data.gyro.x;
-    document.getElementById('gyroY').innerText = data.gyro.y;
-    document.getElementById('gyroZ').innerText = data.gyro.z;
+    $("#pressure1Val").text(`${data.pressure[0]}`);
+    $("#pressure2Val").text(`${data.pressure[1]}`);
+    $("#temperature1Val").text(`${data.temperature[0]}`);
+    $("#temperature2Val").text(`${data.temperature[1]}`);
+    $("#humidityVal").text(`${data.humidity}`);
+    $("#CO2Val").text(`${data.CO2}`);
+    $("#voltageSystem").text(`${data.voltageSystem}`);
+    $("#voltageHeater").text(`${data.voltageHeater}`);
+    $("#gyroX").text(`${data.gyro.x}`);
+    $("#gyroY").text(`${data.gyro.y}`);
+    $("#acmtrZ").text(`${data.gyro.z}`);
+    $("#acmtrX").text(`${data.gyro.x}`);
+    $("#acmtrY").text(`${data.gyro.y}`);
+    $("#acmtrZ").text(`${data.gyro.z}`);
 
-    fire_el = document.getElementById('fire');
-    if (data.fire == true && fire_el.getAttribute('active') == 'false') {
-        fire_el.src = '/static/pictures/fire_active.png';
-        fire_el.setAttribute('active', 'true');
-    }
-    if (data.fire == false && fire_el.getAttribute('active') == 'true') {
-        fire_el.src = '/static/pictures/fire.png';
-        fire_el.setAttribute('active', 'false');
+    if (window.alertFire && data.fire == true && fire_el.getAttribute('active') == 'false') {
+        window.alertFire = false;
+        alert('ПОЖАР!');
     }
     for (var sensor in data) {
         if (sensor == 'fire' || sensor == 'voltageSystem' || sensor == 'voltageHeater' || sensor == 'gyro')
@@ -195,6 +194,19 @@ function getInfo() {
         .done(addData)
 }
 
+function getAudio() {
+    $.get('/getAudio')
+        .done(
+            function (data){
+                $('#audioSelect').html("")
+                $.each(data, function(key, value) {
+                    console.log(data);
+                    $('#audioSelect').append($('<option>', {value: key, text:value}));
+                })
+            }
+        );
+}
+
 function checkLogin() {
     console.log({ password: $('#password')[0].value });
     $.post({
@@ -223,6 +235,7 @@ function startDevice(device) {
 audio = {
     context: new AudioContext(),
 }
+alertFire = true;
 
 function startRecord() {
     navigator.mediaDevices.getUserMedia({ audio: true, video: false })
@@ -283,8 +296,13 @@ function loadImg() {
         });
 }
 
-timer = setInterval(
+// timer = setInterval(
+//     function() {
+//         getInfo();
+//         loadImg();
+//     }, 1000);
+
+fireTimer = setInterval(
     function() {
-        getInfo();
-        loadImg();
-    }, 1000);
+        window.alertFire = true;
+    }, 5000);

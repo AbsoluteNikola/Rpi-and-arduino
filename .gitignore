@@ -3,4 +3,5 @@
 *.log
 *.jpg
 *.wav
+data/*
 secrets.py
