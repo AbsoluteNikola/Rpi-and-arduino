@@ -3,6 +3,7 @@ Description=run dataserver to communicate with arduino, created by Nikolay Rulev
 After=network.target
 
 [Service]
+Restart=always
 User=pi
 Group=www-data
 WorkingDirectory=/home/pi/Rpi-and-arduino/workers
