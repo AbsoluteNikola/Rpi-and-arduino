@@ -354,11 +354,11 @@ function loadImg() {
         });
 }
 
-// timer = setInterval(
-//     function() {
-//         getInfo();
-//         loadImg();
-//     }, 1000);
+timer = setInterval(
+    function() {
+        getInfo();
+        loadImg();
+    }, 1000);
 
 fireTimer = setInterval(
     function() {
