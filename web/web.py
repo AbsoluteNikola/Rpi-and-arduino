@@ -64,12 +64,14 @@ def play_audio(audio=''):
     return jsonify("ok")
 
 
-@app.route('/getAudio', methods=['GET'])
-def get_audio():
-    data = {
-        key: val for key, val in enumerate(os.listdir('../data/audio/outgoing'))
-    }
-    return jsonify(data)
+@app.route('/getAudioList', methods=['GET'])
+def get_audio_list():
+    return jsonify(os.listdir('../data/audio/outgoing'))
+
+
+@app.route('/getFilesList', methods=['GET'])
+def get_files_list():
+    return jsonify(os.listdir('../data/db') + os.listdir('../data/files/outgoing'))
 
 
 @app.route('/putAudio', methods=['POST'])

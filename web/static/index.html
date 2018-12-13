@@ -192,12 +192,27 @@
             &nbsp;
           <audio controls src="" id="player" autoplay type="audio/wav"></audio>
         </div>
-        <div class="row no-gutters" style="margin-top: 5px;">
-          <button class="btn btn-primary col-3" type="button" onclick="$()">Прослушать</button>
+        <div class="row no-gutters" style="margin-top: 5px;" >
+          <button class="btn btn-primary col-3" type="button" onclick="setAudioLink()">Прослушать</button>
           &nbsp;
-          <select id="audioSelect" class="form-control col-6" onfocus="getAudio()"></select>
+          <select id="audioSelect" class="form-control col-6" onfocus="getAudioList()"></select>
           &nbsp;
-          <!-- <audio controls src="" id="listener" class="col" type="audio/wav"></audio> -->
+        </div>
+        <div class="row no-gutters " style="margin-top: 5px;">
+          <button class="btn btn-primary col-3" type="button">Отправить</button>
+          &nbsp;
+        <div class="custom-file col-6">
+          <input type="file" class="custom-file-input btn btn-primary" id="customFile">
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+        </div>
+        <div class="row no-gutters" style="margin-top: 5px;" >
+          <a href="" id="downloadFile" class=" btn btn-primary col-3" role="button" download>
+            Скачать
+          </a>
+          &nbsp;
+          <select id="filesSelect" class="form-control col-6" onchange="setDownloadFileLink()" onfocus="getFilesList()"></select>
+          &nbsp;
         </div>
       </div>
     </div>

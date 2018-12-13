@@ -194,17 +194,50 @@ function getInfo() {
         .done(addData)
 }
 
-function getAudio() {
-    $.get('/getAudio')
+function getAudioList() {
+    $.get('/getAudioList')
         .done(
             function (data){
                 $('#audioSelect').html("")
-                $.each(data, function(key, value) {
-                    console.log(data);
-                    $('#audioSelect').append($('<option>', {value: key, text:value}));
-                })
+                $.each(data, function(value, key) {
+                    console.log(value, key);
+                    $('#audioSelect').append($('<option>', {value: key, text:key}));
+                });
+                setAudioLink();
             }
         );
+}
+
+function getFilesList() {
+    $.get('/getFilesList')
+        .done(
+            function (data){
+                $('#filesSelect').html("")
+                $.each(data, function(value, key) {
+                    console.log(value, key);
+                    $('#filesSelect').append($('<option>', {value: key, text:key}));
+                })
+                setDownloadFileLink();
+            }
+        );
+}
+
+function setDownloadFileLink() {
+    var file = $('#filesSelect option:selected').text();
+    var link = "";
+    if(file.endsWith('.db')) {
+        link = `/getDB/${file}`;
+    } else {
+        link = `/getFile/${file}`;
+    }
+    console.log(`change link ${link}`);
+    $('#downloadFile').attr("href", link);
+}
+
+function setAudioLink() {
+    var audio = $('#audioSelect option:selected').text();
+    player = document.getElementById("player");
+    player.src = `/getAudio/${audio}`;
 }
 
 function checkLogin() {
