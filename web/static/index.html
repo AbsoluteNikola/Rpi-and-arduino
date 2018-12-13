@@ -199,12 +199,12 @@
           &nbsp;
         </div>
         <div class="row no-gutters " style="margin-top: 5px;">
-          <button class="btn btn-primary col-3" type="button">Отправить</button>
+          <button class="btn btn-primary col-3" type="button" onclick="sendFile()" id="uploadFileButton">Отправить</button>
           &nbsp;
-        <div class="custom-file col-6">
-          <input type="file" class="custom-file-input btn btn-primary" id="customFile">
-          <label class="custom-file-label" for="customFile">Choose file</label>
-        </div>
+          <div class="custom-file col-6">
+            <input type="file" class="custom-file-input btn btn-primary" id="selectUploadFiles">
+            <label class="custom-file-label" for="selectUploadFiles">Choose file</label>
+          </div>
         </div>
         <div class="row no-gutters" style="margin-top: 5px;" >
           <a href="" id="downloadFile" class=" btn btn-primary col-3" role="button" download>

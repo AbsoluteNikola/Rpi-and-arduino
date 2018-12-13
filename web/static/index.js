@@ -320,21 +320,24 @@ function sendRecord() {
 }
 
 function sendFile() {
-    form = new FormData();
-    form.append('file', audio.file);
-    form.append('')
+    if(!$("#selectUploadFiles").prop("files")[0])
+        return;
+    var form = new FormData();
+    var file = $("#selectUploadFiles").prop("files")[0];
+    form.append('file', file);
+    form.append('name', file.name);
     $.post({
-            url: '/putAudio',
+            url: '/putFile',
             data: form,
             cache: false,
             processData: false,
             contentType: false
         }).done(function() {
-            console.log("send successfully");
-            $('#sendButton').removeClass('btn-danger').addClass('btn-primary');
+            console.log("send file successfully");
+            $('#uploadFileButton').removeClass('btn-danger').addClass('btn-primary');
         })
         .fail(function() {
-            $('#sendButton').removeClass('btn-primary').addClass('btn-danger');
+            $('#uploadFileButton').removeClass('btn-primary').addClass('btn-danger');
         });
 }
 
