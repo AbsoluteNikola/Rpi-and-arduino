@@ -9,7 +9,7 @@ from datetime import date
 from random import choice, sample, random, randint
 from subprocess import Popen
 from flask import Flask, jsonify, request, make_response, abort
-# from RPi import GPIO
+from RPi import GPIO
 import sqlite3
 from secrets import PASSWORD, COOKIE
 
