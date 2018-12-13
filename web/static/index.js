@@ -225,9 +225,9 @@ function setDownloadFileLink() {
     var file = $('#filesSelect option:selected').text();
     var link = "";
     if(file.endsWith('.db')) {
-        link = `/getDB/${file}`;
+        link = `/getDB/${file}NG`;
     } else {
-        link = `/getFile/${file}`;
+        link = `/getFile/${file}NG`;
     }
     console.log(`change link ${link}`);
     $('#downloadFile').attr("href", link);
@@ -236,7 +236,7 @@ function setDownloadFileLink() {
 function setAudioLink() {
     var audio = $('#audioSelect option:selected').text();
     player = document.getElementById("player");
-    player.src = `/getAudio/${audio}`;
+    player.src = `/getAudio/${audio}NG`;
 }
 
 function checkLogin() {
