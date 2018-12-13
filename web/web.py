@@ -86,6 +86,17 @@ def put_audio():
     return jsonify('ok')
 
 
+@app.route('/putFile', methods=['POST'])
+def put_file():
+    if request.cookies.get('password') != COOKIE:
+        abort(403)
+
+    f = request.files['file']
+    f_name = request.form.get('name')
+    f.save("../data/files/incoming/{}".format(f_name))
+    return jsonify('ok')
+
+
 @app.route('/checkLogin', methods=('POST', ))
 def check_login():
     """

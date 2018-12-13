@@ -203,7 +203,6 @@ function getAudioList() {
                     console.log(value, key);
                     $('#audioSelect').append($('<option>', {value: key, text:key}));
                 });
-                setAudioLink();
             }
         );
 }
@@ -305,6 +304,25 @@ function stopRecord() {
 function sendRecord() {
     form = new FormData();
     form.append('audio', audio.file);
+    $.post({
+            url: '/putAudio',
+            data: form,
+            cache: false,
+            processData: false,
+            contentType: false
+        }).done(function() {
+            console.log("send successfully");
+            $('#sendButton').removeClass('btn-danger').addClass('btn-primary');
+        })
+        .fail(function() {
+            $('#sendButton').removeClass('btn-primary').addClass('btn-danger');
+        });
+}
+
+function sendFile() {
+    form = new FormData();
+    form.append('file', audio.file);
+    form.append('')
     $.post({
             url: '/putAudio',
             data: form,

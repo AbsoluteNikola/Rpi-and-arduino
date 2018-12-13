@@ -1,0 +1,9 @@
+mkdir data
+mkdir data/audio
+mkdir data/audio/incoming
+mkdir data/audio/outgoing
+mkdir data/camera
+mkdir data/db
+mkdir data/files
+mkdir data/files/incoming
+mkdir data/files/outgoing
