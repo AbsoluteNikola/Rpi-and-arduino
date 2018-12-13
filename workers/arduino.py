@@ -4,7 +4,7 @@ import json
 import time
 
 
-SENSORS_NUMBER = 12
+SENSORS_NUMBER = 15
 
 
 class ArduinoConn:

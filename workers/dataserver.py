@@ -1,6 +1,6 @@
 import sys
 import os
-from time import sleep
+from time import sleep, time
 import sqlite3
 from datetime import date
 from arduino import ArduinoConn, SENSORS_NUMBER
@@ -9,6 +9,7 @@ sys.stdout = sys.stderr
 
 SQL_CREATE_TABLE = """
     CREATE TABLE sensors (
+        time_utc real,
         temperature_1 real,
         temperature_2 real,
         humidity real,
@@ -20,12 +21,15 @@ SQL_CREATE_TABLE = """
         voltage_heater real,
         gyro_x real,
         gyro_y real,
-        gyro_z real
+        gyro_z real,
+        accel_x real,
+        accel_y real,
+        accel_z real    
     );
 """
 
-SQL_INSERT = """INSERT INTO sensors VALUES (:temperature_1, :temperature_2, :humidity, :pressure_1, :pressure_2, :CO2, :CO, 
-:voltage_system, :voltage_heater, :gyro_x, :gyro_y, :gyro_z); """
+SQL_INSERT = """INSERT INTO sensors VALUES (:time_utc, :temperature_1, :temperature_2, :humidity, :pressure_1, 
+:pressure_2, :CO2, :CO, :voltage_system, :voltage_heater, :gyro_x, :gyro_y, :gyro_z); """
 
 
 class DataServer:
@@ -78,7 +82,7 @@ class DataServer:
                 self.create_db()
                 self.date = date.today()
             print(results)
-
+            results['time_utc'] = int(time())
             self.db_cursor.execute(SQL_INSERT, results)
             self.db.commit()
             print('insert ', results)

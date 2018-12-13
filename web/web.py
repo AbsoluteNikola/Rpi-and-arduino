@@ -153,7 +153,8 @@ def get_info():
     name = '{}_{}_{}.db'.format(year, month, day)
     cur = sqlite3.connect('../data/db/{}'.format(name)).cursor()
     cur.execute("""SELECT * FROM sensors WHERE "rowid" = (SELECT max("rowid") FROM sensors)""")
-    #   temperature_1 real,
+    #    time_utc real,
+    #    temperature_1 real,
     #    temperature_2 real,
     #    humidity real,
     #    pressure real,
@@ -166,7 +167,7 @@ def get_info():
     #    gyro_z real,
     res = cur.fetchone()
     print(res)
-    t1, t2, h, p_1, p_2, c2, c, v_s, v_h, g_x, g_y, g_z = res
+    tm, t1, t2, h, p_1, p_2, c2, c, v_s, v_h, g_x, g_y, g_z = res
     # cur.close()
     p = randint(1000, 1400)
     print(t1, t2, p)

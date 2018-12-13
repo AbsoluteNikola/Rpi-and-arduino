@@ -136,17 +136,17 @@ function addData(data) {
     $("#voltageHeater").text(`${data.voltageHeater}`);
     $("#gyroX").text(`${data.gyro.x}`);
     $("#gyroY").text(`${data.gyro.y}`);
-    $("#acmtrZ").text(`${data.gyro.z}`);
-    $("#acmtrX").text(`${data.gyro.x}`);
-    $("#acmtrY").text(`${data.gyro.y}`);
-    $("#acmtrZ").text(`${data.gyro.z}`);
+    $("#gyroZ").text(`${data.gyro.z}`);
+    $("#acmtrX").text(`${data.accel.x}`);
+    $("#acmtrY").text(`${data.accel.y}`);
+    $("#acmtrZ").text(`${data.accel.z}`);
 
     if (window.alertFire && data.fire == true && fire_el.getAttribute('active') == 'false') {
         window.alertFire = false;
         alert('ПОЖАР!');
     }
     for (var sensor in data) {
-        if (sensor == 'fire' || sensor == 'voltageSystem' || sensor == 'voltageHeater' || sensor == 'gyro')
+        if (sensor == 'fire' || sensor == 'voltageSystem' || sensor == 'voltageHeater' || sensor == 'gyro' || sensor == 'accel')
             continue;
         var chart = window[sensor + 'Chart'];
 
@@ -174,6 +174,10 @@ function addData(data) {
                 //chart.data.datasets[i].backgroundColor = 'rgba(255, 0, 0, 1)'
                 chart.data.datasets[i].label = 'Error';
                 continue;
+            } else if(data[sensor][i] === -2.0) {
+                chart.datasets[i].label = 'CO2 датчик прогревается';
+            } else if(sensor == "CO2") {
+                chart.datasets[i].label = 'CO2';
             } else if (chart.data.datasets[i].label ==='Error' && data[sensor][i] !== -1.0) {
                 chart.data.datasets[i].label = chart.data.datasets[i].oldLabel;
                 chart.data.datasets[i].borderColor = chart.data.datasets[i].oldColor;
