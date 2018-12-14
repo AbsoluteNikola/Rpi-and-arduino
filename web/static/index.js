@@ -171,7 +171,7 @@ function addData(data) {
         }
         // add new points
         for (var i = 0; i < data[sensor].length; i++) {
-            if (data[sensor][i] === -1.0 && chart.data.datasets[i].label !== 'Error') {
+            if ((data[sensor][i] === -1.0 || data[sensor][i] === null) && chart.data.datasets[i].label !== 'Error') {
                 chart.data.datasets[i].oldLabel = chart.data.datasets[i].label;
                 chart.data.datasets[i].oldColor = chart.data.datasets[i].borderColor;
                 console.log(chart.data.datasets[i].oldLabel, chart.data.datasets[i].oldColor);
