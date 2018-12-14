@@ -190,7 +190,9 @@ function addData(data) {
             } else if (chart.data.datasets[i].label === 'Error' && data[sensor][i] === -1.0) {
                 continue;
             }
-            chart.data.datasets[i].data[chart.data.labels.length - 1] = data[sensor][i];
+            if(data[sensor][i] != -2.0) {
+                chart.data.datasets[i].data[chart.data.labels.length - 1] = data[sensor][i];
+            }
         }
         chart.update();
 
