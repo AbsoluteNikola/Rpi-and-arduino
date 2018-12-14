@@ -12,6 +12,7 @@ SQL_CREATE_TABLE = """
         time_utc real,
         temperature_1 real,
         temperature_2 real,
+        temperature_3 real,
         humidity real,
         pressure_1 real,
         pressure_2 real,
@@ -28,8 +29,9 @@ SQL_CREATE_TABLE = """
     );
 """
 
-SQL_INSERT = """INSERT INTO sensors VALUES (:time_utc, :temperature_1, :temperature_2, :humidity, :pressure_1, 
-:pressure_2, :CO2, :CO, :voltage_system, :voltage_heater, :gyro_x, :gyro_y, :gyro_z); """
+SQL_INSERT = """INSERT INTO sensors VALUES (:time_utc, :temperature_1, :temperature_2, :temperature_3, 
+:humidity, :pressure_1, :pressure_2, :CO2, :CO, :voltage_system, :voltage_heater, 
+:gyro_x, :gyro_y, :gyro_z, :accel_x, :accel_y, :accel_z); """
 
 
 class DataServer:
@@ -82,7 +84,7 @@ class DataServer:
                 self.create_db()
                 self.date = date.today()
             print(results)
-            results['time_utc'] = int(time())
+            results['time_utc'] = time()
             self.db_cursor.execute(SQL_INSERT, results)
             self.db.commit()
             print('insert ', results)

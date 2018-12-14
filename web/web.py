@@ -156,6 +156,7 @@ def get_info():
     #    time_utc real,
     #    temperature_1 real,
     #    temperature_2 real,
+    #    temperature_3 real,
     #    humidity real,
     #    pressure real,
     #    CO2 real,
@@ -167,12 +168,12 @@ def get_info():
     #    gyro_z real,
     res = cur.fetchone()
     print(res)
-    tm, t1, t2, h, p_1, p_2, c2, c, v_s, v_h, g_x, g_y, g_z = res
+    tm, t1, t2, t3, h, p_1, p_2, c2, c, v_s, v_h, g_x, g_y, g_z, a_x, a_y, a_z = res
     # cur.close()
     p = randint(1000, 1400)
     print(t1, t2, p)
     return jsonify({
-        'temperature': [t1, t2],
+        'temperature': [t1, t2, t3],
         'pressure': [p_1, p_2],
         'humidity': h,
         'CO2': c2,
@@ -183,5 +184,10 @@ def get_info():
             'x': g_x,
             'y': g_y,
             'z': g_z
+        },
+        'accel': {
+            'x': a_x,
+            'y': a_y,
+            'z': a_z
         }
     })

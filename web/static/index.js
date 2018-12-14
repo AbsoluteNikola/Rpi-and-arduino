@@ -17,6 +17,12 @@ window.temperatureChart = new function buildTemperature() {
                     data: [],
                     borderColor: 'rgb(255, 169, 0)',
                     fill: false
+                },
+                {
+                    label: "№3",
+                    data: [],
+                    borderColor: 'rgb(0, 179, 0)',
+                    fill: false
                 }
             ]
         },
@@ -174,7 +180,7 @@ function addData(data) {
                 //chart.data.datasets[i].backgroundColor = 'rgba(255, 0, 0, 1)'
                 chart.data.datasets[i].label = 'Error';
                 continue;
-            } else if(data[sensor][i] === -2.0) {
+            } else if(sensor == "CO2" && data[sensor][i] === -2.0) {
                 chart.datasets[i].label = 'CO2 датчик прогревается';
             } else if(sensor == "CO2") {
                 chart.datasets[i].label = 'CO2';
