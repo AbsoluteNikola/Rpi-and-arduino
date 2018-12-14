@@ -181,9 +181,9 @@ function addData(data) {
                 chart.data.datasets[i].label = 'Error';
                 continue;
             } else if(sensor == "CO2" && data[sensor][i] === -2.0) {
-                chart.datasets[i].label = 'CO2 датчик прогревается';
+                chart.data.datasets[i].label = 'CO2 датчик прогревается';
             } else if(sensor == "CO2") {
-                chart.datasets[i].label = 'CO2';
+                chart.data.datasets[i].label = 'CO2';
             } else if (chart.data.datasets[i].label ==='Error' && data[sensor][i] !== -1.0) {
                 chart.data.datasets[i].label = chart.data.datasets[i].oldLabel;
                 chart.data.datasets[i].borderColor = chart.data.datasets[i].oldColor;
